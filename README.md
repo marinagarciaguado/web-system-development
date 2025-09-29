@@ -4,6 +4,6 @@
 - BY: MARINA GARCÍA & RODRIGO SANTERVAS
 
 ## Exercises Progress
-- MODULE 01 Exercise: Build a personal HTML page. COMPLETED
+- MODULE 01: Build a personal HTML page. COMPLETED ✅
 
 2025
