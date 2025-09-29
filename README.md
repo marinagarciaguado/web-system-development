@@ -4,6 +4,6 @@
 - BY: MARINA GARCÍA & RODRIGO SANTERVAS
 
 ## Module Progress
-- Module 01: Exercise completed
+- Module 01: Exercise build a personal HTML page completed
 
 2025
