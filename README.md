@@ -3,7 +3,7 @@
 - TEACHER: CARLOS JULIO SÁNCHEZ CAZORLA
 - BY: MARINA GARCÍA & RODRIGO SANTERVAS
 
-## Module Progress
-- Module 01: Exercise build a personal HTML page completed
+## Exercises Progress
+- MODULE 01 Exercise: Build a personal HTML page. COMPLETED
 
 2025
