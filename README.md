@@ -3,4 +3,7 @@
 - TEACHER: CARLOS JULIO SÁNCHEZ CAZORLA
 - BY: MARINA GARCÍA & RODRIGO SANTERVAS
 
+## Module Progress
+- Module 01: Exercise completed
+
 2025
