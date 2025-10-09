@@ -2,6 +2,8 @@
 <html>
     <head>
         <title>WEB SYSTEM DEVELOPMENT</title>
+        <!-- ENLACE CSS -->
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <header> <!-- HEADER -->
@@ -10,10 +12,12 @@
         </header>
 
         <main> <!-- MAIN-->
-            <p>
-                This is the first submission for the course <strong>Web System Development</strong>.  
-                In this project, we are learning how to use <em>GitHub</em> and <em>Vite</em> to upload and manage our code.
-            </p>
+            <div class="card">
+                <p>
+                    This is the first submission for the course <strong>Web System Development</strong>.  
+                    In this project, we are learning how to use <em>GitHub</em> and <em>Vite</em> to upload and manage our code.
+                </p>
+            </div>
 
             <!-- IMAGE -->
             <section>
@@ -40,5 +44,5 @@
         <footer> <!-- FOOTER-->
             <p>Web System Development - Marina Garcia & Rodrigo Santervas</p>
         </footer>
-    </body>
+    </body>
 </html>
