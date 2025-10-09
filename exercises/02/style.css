@@ -1,48 +1,77 @@
- /* Background color and font for the page */
+/* General page style */
 body {
-  background-color: #f2f2f2;
-  font-family: Arial, Helvetica, sans-serif;
+background-color: #f4f7fb;
+font-family: Arial, Helvetica, sans-serif;
+color: #333;
+margin: 0;
 }
 
-/* Header, main, and footer */
+/* Header */
 header {
-  background-color: #5995da;
-  color: white;
-  padding: 20px;
+background-color: #4a90e2;
+color: white;
+text-align: center;
+padding: 25px 10px;
+box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Main section */
 main {
-  background-color: white;
-  padding: 20px;
+max-width: 800px;
+margin: 30px auto;
+padding: 20px;
+background-color: white;
+border-radius: 10px;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-footer {
-  background-color: #5995da;
-  color: white;
-  padding: 10px;
-}
-
-/* List and items */
-ul {
-  list-style-type: square;
-  padding-left: 20px;
-}
-
-/* Link styles */
-a {
-  color: #0056b3;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #003d80;
-  text-decoration: underline;
-}
-
-/* Card style */
+/* Card */
 .card {
-  background-color: #d6e9fe;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 2px 2px 8px gray;
+background-color: #dbeafe;
+padding: 15px;
+border-radius: 8px;
+box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+margin-bottom: 25px;
+}
+
+/* Section: Repository */
+.repository {
+text-align: center;
+margin-bottom: 30px;
+}
+
+.repository img {
+border-radius: 8px;
+margin: 10px 0;
+}
+
+.repository a {
+color: #2563eb;
+font-weight: bold;
+text-decoration: none;
+}
+
+.repository a:hover {
+color: #1e40af;
+text-decoration: underline;
+}
+
+/* Lists */
+ul {
+list-style-type: square;
+padding-left: 25px;
+margin-bottom: 25px;
+}
+
+li {
+margin: 6px 0;
+}
+
+/* Footer */
+footer {
+background-color: #4a90e2;
+color: white;
+text-align: center;
+padding: 15px 10px;
+margin-top: 40px;
 }
