@@ -1,6 +1,7 @@
 const expenseNameInput = document.querySelector('input[name="expense-name"]');
 const expenseAmountInput = document.querySelector('input[name="expense-amount"]');
 const addButton = document.getElementById('add-button');
+const resetButton = document.getElementById('reset-button');
 const expenseList = document.getElementById('expense-list');
 const totalElement = document.getElementById('total');
 
@@ -29,5 +30,10 @@ addButton.addEventListener('click', () => {
     expenseAmountInput.value = '';
 });
 
+resetButton.addEventListener('click', () => {
+    totalAmount = 0;
+    totalElement.textContent = '0.00€';
+    expenseList.innerHTML = '';
+});
 
 

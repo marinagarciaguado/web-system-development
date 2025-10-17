@@ -52,8 +52,17 @@ button {
     border-radius: 5px;
 }
 
+#reset-button {
+    background-color: #4190a3; 
+}
+
+#reset-button:hover {
+    background-color: #c9302c;
+}
+
+
 button:hover {
-    background-color: #4178c0;
+    background-color: #45832c;
 }
 
 h2 {
