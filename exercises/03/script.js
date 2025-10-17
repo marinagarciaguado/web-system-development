@@ -16,7 +16,7 @@ addButton.addEventListener('click', () => {
     }
 
     totalAmount += amount;
-    totalElement.textContent = totalAmount.toFixed(2);
+    totalElement.textContent = totalAmount.toFixed(2) + '€';
 
     const listItem = document.createElement('li');
 
@@ -28,5 +28,6 @@ addButton.addEventListener('click', () => {
     expenseNameInput.value = '';
     expenseAmountInput.value = '';
 });
+
 
 
