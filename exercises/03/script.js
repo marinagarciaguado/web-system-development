@@ -20,7 +20,7 @@ addButton.addEventListener('click', () => {
 
     const listItem = document.createElement('li');
 
-    const textNode = document.createTextNode(`{name}€: $${amount.toFixed(2)}`);
+    const textNode = document.createTextNode(`${name}: ${amount.toFixed(2)}€`);
     listItem.appendChild(textNode);
     
     expenseList.appendChild(listItem);
@@ -28,4 +28,5 @@ addButton.addEventListener('click', () => {
     expenseNameInput.value = '';
     expenseAmountInput.value = '';
 });
+
 
