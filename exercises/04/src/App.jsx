@@ -3,9 +3,9 @@ import ProductList from './components/ProductList';
 import Cart from './components/Cart';
 
 const initialProducts = [
-  { id: 1, name: 'Producto A', price: 50 },
-  { id: 2, name: 'Producto B', price: 30 },
-  { id: 3, name: 'Producto C', price: 75 },
+  { id: 1, name: 'Product A', price: 50 },
+  { id: 2, name: 'Product B', price: 30 },
+  { id: 3, name: 'Product C', price: 75 },
 ];
 
 function App() {

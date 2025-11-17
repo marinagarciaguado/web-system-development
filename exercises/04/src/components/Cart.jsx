@@ -3,9 +3,9 @@ import React from 'react';
 function Cart({ items, onRemoveFromCart, total }) {
   return (
     <section className="cart card">
-      <h2>Carrito</h2>
+      <h2>Cart</h2>
       {items.length === 0 ? (
-        <p>El carrito está vacío.</p>
+        <p>Shopping cart is empty.</p>
       ) : (
         <>
           <ul>

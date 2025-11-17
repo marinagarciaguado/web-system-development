@@ -3,11 +3,11 @@ import React from 'react';
 function ProductList({ products, onAddToCart }) {
   return (
     <section className="product-list card">
-      <h2>Productos Disponibles</h2>
+      <h2>Available Products</h2>
       <ul>
         {products.map((product, index) => (
           <li key={product.id}>
-            <span>{product.name} - ${product.price}</span>
+            <span>{product.name} - €{product.price}</span>
             
             <button 
               onClick={() => onAddToCart(product)} 
