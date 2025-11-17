@@ -64,8 +64,19 @@ button {
   background-color: #007bff;
 }
 
+.product-list button:hover {
+  background-color: #0023a2; 
+  transition: background-color 0.3s ease;
+}
+
+
 .cart button {
   background-color: #dc3545;
+}
+
+.cart button:hover {
+  background-color: #b30000; 
+  transition: background-color 0.3s ease;
 }
 
 .cart-total {

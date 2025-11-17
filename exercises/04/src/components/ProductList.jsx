@@ -7,13 +7,20 @@ function ProductList({ products, onAddToCart }) {
       <ul>
         {products.map((product, index) => (
           <li key={product.id}>
+
+            <img 
+              src={product.img} 
+              alt={product.name} 
+              style={{ width: '100px', height: '100px', objectFit: 'cover', marginBottom: '0.5rem' }} 
+            />
+            
             <span>{product.name} - €{product.price}</span>
             
             <button 
               onClick={() => onAddToCart(product)} 
               data-testid={`add-${index}`}
             >
-              Añadir al Carrito
+              Add to Cart
             </button>
             
           </li> 

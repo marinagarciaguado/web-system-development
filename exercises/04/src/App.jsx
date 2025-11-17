@@ -3,9 +3,9 @@ import ProductList from './components/ProductList';
 import Cart from './components/Cart';
 
 const initialProducts = [
-  { id: 1, name: 'Product A', price: 50 },
-  { id: 2, name: 'Product B', price: 30 },
-  { id: 3, name: 'Product C', price: 75 },
+  { id: 1, name: 'Product A', price: 50, img: '/src/assets/letterA.png' },
+  { id: 2, name: 'Product B', price: 30, img: '/src/assets/letterB.png' },
+  { id: 3, name: 'Product C', price: 75, img: '/src/assets/letterC.png' },
 ];
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
   return (
     <>
       <header>
-        <h1>React Shopping Cart</h1>
+        <h1>Shopping Cart by Marina & Rodrigo</h1>
       </header>
       
       <main className="app-main">
@@ -45,7 +45,7 @@ function App() {
       </main>
       
       <footer>
-        <p>Ejercicio Módulo 04 - Web System Development</p>
+        <p>Module 04 - Web System Development</p>
       </footer>
     </>
   );
