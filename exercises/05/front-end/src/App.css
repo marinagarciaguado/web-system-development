@@ -1,9 +1,19 @@
-/* General Styles */
+/* --- General Styles (Global Reset) --- */
+
+body {
+    /* Set background to white and default text to black/dark gray */
+    background-color: #ffffff;
+    color: #333;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* --- Container & Headings --- */
 .app-container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto; /* Centers the content block */
     padding: 30px;
-    font-family: Arial, sans-serif;
+    /* font-family inherited from body, no need to redefine */
 }
 
 h1 {
@@ -12,69 +22,95 @@ h1 {
     border-bottom: 2px solid #5995DA; 
     padding-bottom: 10px;
     margin-bottom: 20px;
+    font-size: 28px;
+    text-align: center;
 }
 
 h2 {
     color: #555;
     margin-top: 30px;
+    font-size: 22px;
 }
 
-/* Form Styles (Uses Flexbox) */
+/* --- Form Styles (Add New Book) --- */
 .add-form {
-    display: flex;
+    display: flex; /* Enables Flexbox layout for direct children */
     flex-direction: column;
-    gap: 10px;
-    padding: 20px; 
-    border: 1px solid #ccc; 
+    gap: 15px; /* Adds space between flex items (inputs, button) */
+    padding: 25px; 
+    border: 1px solid #ddd; 
     border-radius: 8px;
-    background-color: #f9f9f9;
-    margin-bottom: 20px; 
+    background-color: #f0f0f0; /* Light gray background for contrast */
+    margin-bottom: 30px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08); /* Adds slight shadow for depth */
 }
 
 .add-form input {
-    padding: 10px;
-    border: 1px solid #ddd;
+    /* Inputs stay crisp white against the light gray form background */
+    background-color: white; 
+    color: #333;
+    padding: 12px; 
+    border: 1px solid #ccc; 
     border-radius: 4px;
     font-size: 16px;
 }
 
 .add-button {
     padding: 12px;
-    background-color: #5995DA;
+    background-color: #5995DA; /* Blue accent color */
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-weight: bold;
+    transition: background-color 0.3s;
 }
 
 .add-button:hover {
+    /* Darken slightly on hover */
     background-color: #4679a9;
 }
 
-/* List Styles (Uses Flexbox for alignment) */
+/* --- List Styles (Current Inventory) --- */
 .book-list {
-    list-style: none; /* Removes default bullet points */
+    list-style: none;
     padding: 0;
 }
 
 .book-item {
-    display: flex; /* Makes the list item a flex container [cite: 6922] */
-    justify-content: space-between; /* Pushes content and button to opposite ends [cite: 6967] */
+    display: flex; /* Makes the list item a flex container */
+    justify-content: space-between; /* Pushes content and button to opposite ends */
     align-items: center;
-    padding: 15px; /* Inner spacing [cite: 6589] */
-    margin-bottom: 8px; /* Outer spacing [cite: 6591] */
-    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px; 
+    background-color: white; /* Item background is white */
+    border: 1px solid #e0e0e0; 
+    border-left: 6px solid #5995DA; /* Blue accent bar on the left for visual hierarchy */
     border-radius: 4px;
-    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.book-item span {
+    /* Ensures the data text is readable dark color */
+    color: #333; 
+    font-size: 16px;
+}
+
+.book-item strong {
+    font-weight: bold;
 }
 
 .delete-button {
     padding: 8px 12px;
-    background-color: #f44336;
+    background-color: #f44336; /* Red for Delete */
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+    background-color: #d32f2f;
 }

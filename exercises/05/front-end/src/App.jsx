@@ -84,7 +84,7 @@ const App = () => {
     // === Rendering the UI using JSX ===
     return (
         <div className="app-container">
-            <h1>📚 Book Inventory Management</h1>
+            <h1> Book Inventory Management</h1>
 
             {/* --- Add Book Form --- */}
             <form onSubmit={handleAddBook} className="add-form">
