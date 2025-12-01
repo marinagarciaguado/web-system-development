@@ -1,13 +1,19 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import booksRouter from './books.js'; 
 
 const app = express();
 const PORT = process.env.PORT || 3000; 
 
-app.use(cors());
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
+app.use(cors());
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 const requestLogger = (request, response, next) => {
     console.log('Method:', request.method);
@@ -17,10 +23,6 @@ const requestLogger = (request, response, next) => {
     next();
 };
 app.use(requestLogger);
-
-app.get('/', (request, response) => {
-    response.send('<h1>📚 Welcome to the Books API!</h1><p>The REST API endpoints are available under <code>/books</code>.</p>');
-});
 
 app.use('/books', booksRouter); 
 
