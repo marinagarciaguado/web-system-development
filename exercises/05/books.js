@@ -3,11 +3,7 @@ import { Router } from 'express';
 const booksRouter = Router();
 
 // In-memory data store (Simulated Database)
-let books = [
-  { id: 1, title: 'To Kill a Mockingbird', author: 'Harper Lee' },
-  { id: 2, title: '1984', author: 'George Orwell' },
-  { id: 3, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' }
-];
+let books = [];
 
 // Helper to generate a sequential unique ID
 const generateId = () => {

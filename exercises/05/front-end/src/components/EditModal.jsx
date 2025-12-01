@@ -33,7 +33,16 @@ const EditModal = ({ book, onSave, onCancel }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        onSave(book.id, { ...book, title, author });
+        
+        // Pass the updated object structure directly
+        const updatedFields = { 
+            id: book.id, // Explicitly include the original ID
+            title: title, 
+            author: author 
+        };
+        
+        // Pass the ID and the new object to the parent handler
+        onSave(book.id, updatedFields); 
     };
 
     return (
