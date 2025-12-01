@@ -1,5 +1,3 @@
-// src/components/OptionsMenu.jsx
-
 import React, { useState } from 'react';
 
 const OptionsMenu = ({ book, onEditClick, onDeleteClick }) => {
@@ -15,12 +13,11 @@ const OptionsMenu = ({ book, onEditClick, onDeleteClick }) => {
         setIsOpen(false);
     };
 
-    // Style for the three vertical dots (⋮)
     const buttonStyle = {
         background: 'none',
         border: 'none',
         cursor: 'pointer',
-        fontSize: '1.5em', // Make the dots visible
+        fontSize: '1.5em',
         padding: '0 5px',
         color: '#555',
         lineHeight: '1em',
@@ -52,7 +49,7 @@ const OptionsMenu = ({ book, onEditClick, onDeleteClick }) => {
                 onClick={() => setIsOpen(!isOpen)} 
                 style={buttonStyle}
             >
-                {'\u22EE'} {/* Vertical Ellipsis Unicode Character (⋮) */}
+                {'\u22EE'} 
             </button>
             
             {isOpen && (

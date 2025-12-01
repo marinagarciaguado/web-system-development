@@ -1,8 +1,5 @@
-// src/components/EditModal.jsx
-
 import React, { useState, useEffect } from 'react';
 
-// Reusing modal styles defined in ConfirmModal.jsx (simplified inline here)
 const ModalStyle = {
     position: 'fixed',
     top: 0,
@@ -34,14 +31,12 @@ const EditModal = ({ book, onSave, onCancel }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         
-        // Pass the updated object structure directly
         const updatedFields = { 
-            id: book.id, // Explicitly include the original ID
+            id: book.id,
             title: title, 
             author: author 
         };
-        
-        // Pass the ID and the new object to the parent handler
+
         onSave(book.id, updatedFields); 
     };
 
@@ -50,17 +45,15 @@ const EditModal = ({ book, onSave, onCancel }) => {
             <form onSubmit={handleSubmit} style={ContentStyle}>
                 <h3>Edit Book (ID: {book.id})</h3>
                 
-                {/* ID Field (Read-only) */}
                 <label style={{ display: 'block', margin: '10px 0 5px 0' }}>Book ID:</label>
                 <input 
                     type="text" 
                     value={book.id} 
                     readOnly 
-                    disabled // Cannot be changed
+                    disabled 
                     style={{ background: '#eee', padding: '8px', border: '1px solid #ccc', width: '95%' }} 
                 />
 
-                {/* Title Field (Editable) */}
                 <label style={{ display: 'block', margin: '10px 0 5px 0' }}>Title:</label>
                 <input 
                     type="text" 
@@ -70,7 +63,6 @@ const EditModal = ({ book, onSave, onCancel }) => {
                     style={{ padding: '8px', border: '1px solid #ccc', width: '95%' }} 
                 />
 
-                {/* Author Field (Editable) */}
                 <label style={{ display: 'block', margin: '10px 0 5px 0' }}>Author:</label>
                 <input 
                     type="text" 

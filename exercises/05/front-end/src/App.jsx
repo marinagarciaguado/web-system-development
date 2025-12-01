@@ -1,22 +1,18 @@
-// src/App.jsx
-
 import React, { useState, useEffect } from 'react';
 import bookService from './services/bookService'; 
-import OptionsMenu from './components/OptionsMenu'; // <-- NEW IMPORT
-import EditModal from './components/EditModal';     // <-- NEW IMPORT
-import ConfirmModal from './components/ConfirmModal'; // <-- NEW IMPORT
+import OptionsMenu from './components/OptionsMenu'; 
+import EditModal from './components/EditModal';    
+import ConfirmModal from './components/ConfirmModal'; 
 import './App.css'; 
 
 const App = () => {
     const [books, setBooks] = useState([]); 
     const [newTitle, setNewTitle] = useState('');
     const [newAuthor, setNewAuthor] = useState('');
+  
+    const [bookToEdit, setBookToEdit] = useState(null);      
+    const [bookToDelete, setBookToDelete] = useState(null);   
     
-    // State for modal visibility and data
-    const [bookToEdit, setBookToEdit] = useState(null);       // Book object for editing
-    const [bookToDelete, setBookToDelete] = useState(null);   // Book object for confirmation
-    
-    // === Fetch Data on Component Mount (READ Operation) ===
     useEffect(() => {
         bookService
             .getAll()
@@ -25,11 +21,9 @@ const App = () => {
             })
             .catch(error => {
                 console.error('Error fetching initial books:', error);
-                // alert('Could not connect to the backend API on port 3000. Please ensure it is running.');
             });
     }, []); 
 
-    // === Handlers for Modals ===
 
     const openEditModal = (book) => setBookToEdit(book);
     const closeEditModal = () => setBookToEdit(null);
@@ -37,9 +31,6 @@ const App = () => {
     const openDeleteConfirm = (book) => setBookToDelete(book);
     const closeDeleteConfirm = () => setBookToDelete(null);
 
-    // === Handlers for CRUD Operations ===
-
-    // 1. CREATE (POST) - (No change to logic)
     const handleAddBook = (event) => {
         event.preventDefault(); 
         if (!newTitle || !newAuthor) {
@@ -62,12 +53,10 @@ const App = () => {
             });
     };
     
-    // 2. UPDATE (PUT) - NEW LOGIC
     const handleUpdateBook = (id, updatedBook) => {
         bookService
             .update(id, updatedBook)
             .then(returnedBook => {
-                // Map over the book list and replace the old version with the updated one
                 setBooks(books.map(book => 
                     book.id !== id ? book : returnedBook
                 ));
@@ -79,7 +68,6 @@ const App = () => {
             });
     };
 
-    // 3. DELETE (REMOVE) - MODIFIED LOGIC (to work with modal confirmation)
     const handleConfirmDelete = (id, title) => {
         bookService
             .remove(id)
@@ -95,25 +83,20 @@ const App = () => {
             });
     };
 
-    // Handlers for controlled input components
     const handleTitleChange = (event) => setNewTitle(event.target.value);
     const handleAuthorChange = (event) => setNewAuthor(event.target.value);
 
-    // === Rendering the UI using JSX ===
     return (
         <div className="app-container">
             <h1>Book Inventory Management</h1>
 
-            {/* --- Add Book Form --- */}
             <form onSubmit={handleAddBook} className="add-form">
                 <h2>Add New Book</h2>
-                {/* ... (input fields and button) ... */}
                 <input type="text" value={newTitle} onChange={handleTitleChange} placeholder="Book Title" required/>
                 <input type="text" value={newAuthor} onChange={handleAuthorChange} placeholder="Author Name" required/>
                 <button type="submit" className="add-button">Add Book</button>
             </form>
 
-            {/* --- Book List --- */}
             <h2>Current Inventory</h2>
             <ul className="book-list">
                 {books.map(book => {
@@ -127,8 +110,7 @@ const App = () => {
                                     <strong>{book.title}</strong> by {book.author}
                                 </span>
                             </div>
-                            
-                            {/* NEW: Options Menu Button */}
+
                             <OptionsMenu 
                                 book={book}
                                 onEditClick={openEditModal}
@@ -139,7 +121,6 @@ const App = () => {
                 })}
             </ul>
 
-            {/* --- Modals Rendered Here (Conditionally) --- */}
             {bookToEdit && (
                 <EditModal 
                     book={bookToEdit} 
