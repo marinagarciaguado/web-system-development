@@ -68,7 +68,45 @@ booksRouter.post('/', (request, response) => {
 });
 
 // =======================================================
-// === 4. DELETE /books/:id - Deletes a book by ID (Delete) ===
+// === 4. PUT /books/:id - Replaces a book by ID (Update) ===
+// =======================================================
+booksRouter.put('/:id', (request, response) => { // <-- NEW PUT ROUTE
+    const id = Number(request.params.id);
+    const body = request.body;
+
+    // Validation: Title and author required for update
+    if (!body.title || !body.author) {
+        return response.status(400).json({ error: 'title or author missing' });
+    }
+
+    const updatedBook = {
+        id: id,
+        title: body.title,
+        author: body.author
+    };
+
+    let found = false;
+    // Use map to create a new array: replacing the matched book or keeping others
+    books = books.map(book => {
+        if (book.id === id) {
+            found = true;
+            return updatedBook; // Return the new, updated book object
+        }
+        return book; // Keep existing books
+    });
+
+    if (found) {
+        // Send back the updated resource with 200 OK
+        response.json(updatedBook);
+    } else {
+        // If the ID to update was not found
+        response.status(404).json({ error: 'book not found' });
+    }
+});
+
+
+// =======================================================
+// === 5. DELETE /books/:id - Deletes a book by ID (Delete) ===
 // =======================================================
 booksRouter.delete('/:id', (request, response) => {
   const id = Number(request.params.id);
@@ -79,8 +117,8 @@ booksRouter.delete('/:id', (request, response) => {
   const newLength = books.length;
   
   if (newLength < initialLength) {
-     // 204 No Content for successful deletion
-     response.status(204).end();
+      // 204 No Content for successful deletion
+      response.status(204).end();
   } else {
     // Respond with 404 if the book was not found
     response.status(404).json({ error: 'book not found' }); 

@@ -17,6 +17,13 @@ const create = newObject => {
     return request.then(response => response.data);
 };
 
+// Update a book by ID (PUT /books/:id) - Update
+const update = (id, newObject) => { // <-- NEW FUNCTION
+    // Sends the new object to the specific resource URL
+    const request = axios.put(`${baseUrl}/${id}`, newObject); 
+    return request.then(response => response.data);
+};
+
 // Delete a book by ID (DELETE /books/:id) - Delete
 const remove = id => {
     // Construct the full URL using a template string
@@ -29,5 +36,6 @@ const remove = id => {
 export default { 
     getAll, 
     create, 
+    update,
     remove 
 };
