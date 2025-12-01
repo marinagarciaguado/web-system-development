@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import booksRouter from './books.js'; 
 
 const app = express();
