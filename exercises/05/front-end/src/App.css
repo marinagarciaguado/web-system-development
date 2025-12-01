@@ -1,19 +1,25 @@
 /* General Styles */
 .app-container {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0 auto; /* Centers the content block */
     padding: 30px;
     font-family: Arial, sans-serif;
 }
 
 h1 {
     color: #333;
-    border-bottom: 2px solid #5995DA;
+    /* Uses color from the modules for visual identity */
+    border-bottom: 2px solid #5995DA; 
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
 
-/* Form Styles */
+h2 {
+    color: #555;
+    margin-top: 30px;
+}
+
+/* Form Styles (Uses Flexbox) */
 .add-form {
     display: flex;
     flex-direction: column;
@@ -42,18 +48,22 @@ h1 {
     font-weight: bold;
 }
 
+.add-button:hover {
+    background-color: #4679a9;
+}
+
 /* List Styles (Uses Flexbox for alignment) */
 .book-list {
-    list-style: none; 
+    list-style: none; /* Removes default bullet points */
     padding: 0;
 }
 
 .book-item {
-    display: flex; 
-    justify-content: space-between; 
+    display: flex; /* Makes the list item a flex container [cite: 6922] */
+    justify-content: space-between; /* Pushes content and button to opposite ends [cite: 6967] */
     align-items: center;
-    padding: 15px;
-    margin-bottom: 8px;
+    padding: 15px; /* Inner spacing [cite: 6589] */
+    margin-bottom: 8px; /* Outer spacing [cite: 6591] */
     border: 1px solid #ddd;
     border-radius: 4px;
     background-color: white;

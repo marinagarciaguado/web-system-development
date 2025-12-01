@@ -7,6 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3000; 
 
 // --- Application-Level Middleware ---
+app.use(cors());
 
 // 1. JSON Parser Middleware: Transforms incoming JSON strings into JS objects (req.body)
 app.use(express.json());
