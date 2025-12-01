@@ -1,6 +1,5 @@
 import express from 'express';
-// We will import the booksRouter here once it's created
-// import booksRouter from './books.js'; 
+import booksRouter from './books.js'; 
 
 const app = express();
 // Use port 3000 as a default if the environment variable PORT is not set
@@ -29,7 +28,7 @@ app.get('/', (request, response) => {
 });
 
 // // 3. Link the Books API Router (Uncomment this later in step 4)
-// app.use('/books', booksRouter); 
+app.use('/books', booksRouter); 
 
 // --- Error Handling Middleware ---
 
