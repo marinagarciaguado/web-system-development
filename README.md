@@ -8,6 +8,6 @@
 - MODULE 02: Styled Personal Page with CSS. COMPLETED ✅
 - MODULE 03: JavaScript Fundamentals: Budget Tracker. COMPLETED ✅
 - MODULE 04: Shopping Cart using frontend. COMPLETED ✅
-- MODULE 05: Book Inventory Managment using frontend and backend. COMPLETED ✅
+- MODULE 05: Book Inventory Managment using backend. COMPLETED ✅
   
 2025
