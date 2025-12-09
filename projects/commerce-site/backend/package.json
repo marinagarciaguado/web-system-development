@@ -1,25 +1,22 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node index.js",
-    "dev": "node --watch --env-file .env index.js",
-    "lint": "eslint .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --watch index.js",
+    "seed": "node db/populatedb.js",
+    "lint": "eslint ."
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "express": "^5.2.1",
-    "pg": "^8.16.3"
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.19.2",
+    "pg": "^8.11.5"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "eslint": "^9.39.1",
-    "eslint-plugin-react": "^7.37.5",
-    "globals": "^16.5.0"
+    "eslint": "^9.0.0",
+    "globals": "^15.0.0"
   }
 }

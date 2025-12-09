@@ -7,6 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencias (NUNCA subir esto)
 node_modules
 dist
 dist-ssr
@@ -18,7 +19,12 @@ dist-ssr
 .idea
 .DS_Store
 *.suo
-*.ntvs*
+*.ntvs
 *.njsproj
 *.sln
 *.sw?
+
+# Variables de entorno (MUY IMPORTANTE)
+.env
+.env.*
+!.env.example

@@ -1,16 +1,44 @@
-# React + Vite
+# Frontend - Catálogo de Comercio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interfaz de usuario para la visualización y gestión de productos del comercio familiar. Desarrollada con React y Vite.
 
-Currently, two official plugins are available:
+## 🚀 Tecnologías
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* **Framework:** React 18
+* **Build Tool:** Vite
+* **Routing:** React Router Dom
+* **Estilos:** CSS3 (Grid/Flexbox)
+* **Linting:** ESLint
 
-## React Compiler
+## 🛠️ Configuración Local
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1.  Asegúrate de tener **Node.js** instalado.
+2.  Entra en la carpeta `frontend`:
+    ```bash
+    cd frontend
+    ```
+3.  Instala las dependencias:
+    ```bash
+    npm install
+    ```
+4.  Crea un archivo `.env` en la raíz de `frontend` (opcional si el backend corre en el puerto por defecto, pero recomendado):
+    ```env
+    VITE_API_URL=http://localhost:3000/api
+    ```
+5.  Inicia el servidor de desarrollo:
+    ```bash
+    npm run dev
+    ```
+6.  Abre el navegador en `http://localhost:5173`.
 
-## Expanding the ESLint configuration
+## 📦 Estructura de Carpetas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* `src/components`: Componentes reutilizables (Navbar, Cards).
+* `src/pages`: Vistas principales (Home, Admin, Login).
+* `src/services`: Lógica de conexión con la API (fetch).
+
+## 🔑 Funcionalidades
+
+* Visualización pública del catálogo.
+* Panel de administración protegido (simulación).
+* Gestión de productos (Crear y Eliminar).
