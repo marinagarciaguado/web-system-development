@@ -1,13 +1,13 @@
 import { z } from 'zod';
 
-// Helper constant for password complexity (Required for authentication)
+// Helper constant for secure password requirements
 const passwordRequirements = z.string()
     .min(8, 'Password must be at least 8 characters long.') 
     .regex(/[A-Z]/, 'Password must contain at least one uppercase letter.')
     .regex(/[0-9]/, 'Password must contain at least one number.')
     .regex(/[!@#$%^&*(),.?":{}|<>]/, 'Password must contain at least one special character.');
 
-// Schema for validating user registration input
+// Schema for validating user registration (Required: Secure password requirements)
 export const RegisterSchema = z.object({
     username: z.string().min(3, 'Username must be at least 3 characters long.'),
     email: z.string().email('Invalid email address format.'),
@@ -23,11 +23,9 @@ export const LoginSchema = z.object({
     message: 'Either username or email is required for login.'
 });
 
-// Schema for products (used in ProductController)
+// Schema for products (used by ProductController)
 export const ProductSchema = z.object({
-    name: z.string()
-        .min(3, 'Product name must be at least 3 characters long.')
-        .max(255, 'Product name cannot exceed 255 characters.'),
+    name: z.string().min(3, 'Product name must be at least 3 characters long.'),
     description: z.string().min(10, 'Description must be at least 10 characters long.'),
     price: z.number().positive('Price must be a positive number.'),
     category_id: z.number().int().positive('Category ID must be a positive integer.'),

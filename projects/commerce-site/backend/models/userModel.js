@@ -1,21 +1,24 @@
 import pool from '../db/pool.js';
+import jwt from 'jsonwebtoken';
 
-// Generates a JWT using the user's non-sensitive data
-// This JWT is what the frontend stores for session management (Token storage and management)
+// Generates a JWT (Required: JWT-based authentication system)
 export const generateToken = (user) => {
     return jwt.sign(
         { id: user.id, username: user.username, role: user.role },
-        process.env.JWT_SECRET, // Use secret from .env (Required)
-        { expiresIn: '1d' }
+        process.env.JWT_SECRET, // Reads from .env file
+        { expiresIn: '1d' } // Token storage and management
     );
 };
 
-// Finds a user by either username or email for login validation
+// Finds a user by username or email (Required: Parameterized queries)
 export const findUserByCredentials = async (username, email) => {
-    let query = 'SELECT * FROM users WHERE username = $1 OR email = $2';
+    const query = `
+        SELECT id, username, email, password_hash, role
+        FROM users 
+        WHERE username = $1 OR email = $2
+    `;
 
     try {
-        // Parameterized query prevents SQL injection
         const result = await pool.query(query, [username, email]);
         return result.rows[0] || null; 
     } catch (error) {
@@ -24,7 +27,7 @@ export const findUserByCredentials = async (username, email) => {
     }
 };
 
-// Creates a new user in the database (Registration)
+// Creates a new user (Registration)
 export const createUser = async (username, passwordHash, email, role = 'public') => {
     const query = `
         INSERT INTO users (username, password_hash, email, role)
@@ -36,7 +39,7 @@ export const createUser = async (username, passwordHash, email, role = 'public')
         const result = await pool.query(query, [username, passwordHash, email, role]);
         return result.rows[0];
     } catch (error) {
-        // Error handling for "proper error handling for authentication failures"
+        // Proper error handling for authentication failures
         if (error.code === '23505') { 
             throw new Error('Username or email already in use.');
         }
