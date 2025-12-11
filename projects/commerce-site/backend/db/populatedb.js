@@ -2,7 +2,9 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import pool from './pool.js';
+import pkg from 'pg'; // Import pg package to access the Client object
+const { Client } = pkg;
+import pool from './pool.js'; // The application pool
 import bcrypt from 'bcrypt';
 import 'dotenv/config';
 
@@ -10,10 +12,48 @@ import 'dotenv/config';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+/**
+ * Creates the target database if it doesn't exist.
+ * This requires connecting to the default 'postgres' database first.
+ */
+async function ensureDatabaseExists(dbName, dbConfig) {
+    // Connect to the default 'postgres' database
+    const client = new Client({ 
+        host: dbConfig.DB_HOST,
+        port: dbConfig.DB_PORT,
+        user: dbConfig.DB_USER,
+        password: dbConfig.DB_PASSWORD,
+        database: 'postgres', // Connect to default DB to check/create target DB
+    });
+
+    try {
+        await client.connect();
+        
+        // Check if our target database exists
+        const res = await client.query(`SELECT 1 FROM pg_database WHERE datname = $1`, [dbName]);
+
+        if (res.rows.length === 0) {
+            console.log(`Database ${dbName} does not exist. Creating...`);
+            // Must use string interpolation for CREATE DATABASE command
+            await client.query(`CREATE DATABASE ${dbName}`); 
+            console.log(`Database ${dbName} created successfully.`);
+        } else {
+            console.log(`Database ${dbName} already exists. Skipping creation.`);
+        }
+    } catch (error) {
+        // Only log connection/creation errors here; the main logic handles table creation/seeding
+        console.error('Error in ensureDatabaseExists:', error.message);
+    } finally {
+        // Ensure the temporary client connection is closed
+        await client.end();
+    }
+}
+
 async function runInitSql() {
   const initPath = path.join(__dirname, 'init.sql');
   const sql = fs.readFileSync(initPath, 'utf8');
-  await pool.query(sql);
+  // Use the application pool (which connects to commerce_db) to run table creation
+  await pool.query(sql); 
 }
 
 async function seedAdmin() {
@@ -31,6 +71,7 @@ async function seedAdmin() {
   }
 
   const pwHash = await bcrypt.hash(adminPassword, 10);
+  // This query also runs against the application pool (commerce_db)
   await pool.query(
     `INSERT INTO users (email, password_hash, full_name, phone, nif, role)
      VALUES ($1,$2,$3,$4,$5,$6)`,
@@ -41,10 +82,28 @@ async function seedAdmin() {
 
 async function main() {
   try {
+    // Debug output is now correct
+    console.log(`DB USER: ${process.env.DB_USER} DB PASSWORD LENGTH: ${process.env.DB_PASSWORD ? process.env.DB_PASSWORD.length : 0}`);
+    
+    // Define the DB config based on .env
+    const dbConfig = {
+      DB_HOST: process.env.DB_HOST,
+      DB_PORT: parseInt(process.env.DB_PORT || '5432', 10),
+      DB_USER: process.env.DB_USER,
+      DB_PASSWORD: process.env.DB_PASSWORD,
+    };
+    
+    // STEP 1: Ensure the database exists by connecting to 'postgres'
+    await ensureDatabaseExists(process.env.DB_NAME, dbConfig);
+    
+    // STEP 2: Run init.sql to create tables in commerce_db
     console.log('Running DB init script...');
     await runInitSql();
+    
+    // STEP 3: Seed Admin
     console.log('Seeding admin user...');
     await seedAdmin();
+    
     console.log('Done.');
   } catch (err) {
     console.error('Error seeding DB:', err);
