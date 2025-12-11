@@ -1,5 +1,6 @@
 // backend/models/userModel.js
 import pool from '../db/pool.js';
+import jwt from 'jsonwebtoken';
 
 /**
  * Find a user by email (used for login and existence checks)
@@ -81,6 +82,20 @@ export async function updatePasswordAndRole(userId, newPasswordHash) {
     [newPasswordHash, newRole, userId]
   );
   return res.rows[0];
+}
+// NEW FUNCTION (Add this to the end of the file)
+/**
+ * Generates a JWT token for the user.
+ * @param {Object} user - The user object from the database.
+ * @returns {string} The signed JWT token.
+ */
+export function generateToken(user) {
+  // Uses the JWT_SECRET from your .env file
+  return jwt.sign(
+    { id: user.id, email: user.email, role: user.role },
+    process.env.JWT_SECRET,
+    { expiresIn: '1d' } // Token valid for 1 day
+  );
 }
 
 /**
