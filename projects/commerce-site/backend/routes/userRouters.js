@@ -5,7 +5,7 @@ import { protect, admin } from '../middlewares/authMiddleware.js';
 
 const router = Router();
 
-// Admin creates users
+// Only admin can create users
 router.post('/', protect, admin, createUser);
 
 export default router;

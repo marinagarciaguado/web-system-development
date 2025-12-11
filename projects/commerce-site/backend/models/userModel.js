@@ -1,48 +1,43 @@
+// backend/models/userModel.js
 import pool from '../db/pool.js';
-import jwt from 'jsonwebtoken';
 
-// Generates a JWT (Required: JWT-based authentication system)
-export const generateToken = (user) => {
-    return jwt.sign(
-        { id: user.id, username: user.username, role: user.role },
-        process.env.JWT_SECRET, // Reads from .env file
-        { expiresIn: '1d' } // Token storage and management
-    );
-};
+/**
+ * Find a user by email
+ * @param {string} email
+ * @returns user row or undefined
+ */
+export async function findByEmail(email) {
+  const res = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+  return res.rows[0];
+}
 
-// Finds a user by username or email (Required: Parameterized queries)
-export const findUserByCredentials = async (username, email) => {
-    const query = `
-        SELECT id, username, email, password_hash, role
-        FROM users 
-        WHERE username = $1 OR email = $2
-    `;
+/**
+ * Find a user by id
+ */
+export async function findById(id) {
+  const res = await pool.query('SELECT id, email, full_name, phone, nif, role, created_at FROM users WHERE id = $1', [id]);
+  return res.rows[0];
+}
 
-    try {
-        const result = await pool.query(query, [username, email]);
-        return result.rows[0] || null; 
-    } catch (error) {
-        console.error('Error finding user by credentials:', error.message);
-        throw error;
-    }
-};
+/**
+ * Create a user
+ * @param {Object} data - { email, password_hash, full_name, phone, nif, role }
+ */
+export async function createUser({ email, password_hash, full_name = null, phone = null, nif, role = 'customer' }) {
+  const res = await pool.query(
+    `INSERT INTO users (email, password_hash, full_name, phone, nif, role)
+     VALUES ($1, $2, $3, $4, $5, $6)
+     RETURNING id, email, full_name, phone, nif, role, created_at`,
+    [email, password_hash, full_name, phone, nif, role]
+  );
+  return res.rows[0];
+}
 
-// Creates a new user (Registration)
-export const createUser = async (username, passwordHash, email, role = 'public') => {
-    const query = `
-        INSERT INTO users (username, password_hash, email, role)
-        VALUES ($1, $2, $3, $4)
-        RETURNING id, username, email, role, created_at
-    `;
-
-    try {
-        const result = await pool.query(query, [username, passwordHash, email, role]);
-        return result.rows[0];
-    } catch (error) {
-        // Proper error handling for authentication failures
-        if (error.code === '23505') { 
-            throw new Error('Username or email already in use.');
-        }
-        throw error;
-    }
-};
+/**
+ * Optional helper: basic credential lookup by email (for compatibility)
+ */
+export async function findUserByCredentials(email) {
+  // returns full row including password_hash for auth comparisons
+  const res = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+  return res.rows[0];
+}
