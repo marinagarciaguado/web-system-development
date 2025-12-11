@@ -5,9 +5,12 @@ CREATE TABLE IF NOT EXISTS users (
   password_hash TEXT NOT NULL,
   full_name VARCHAR(255),
   phone VARCHAR(30),
-  nif VARCHAR(30) NOT NULL,
+  nif VARCHAR(30) NOT NULL UNIQUE, -- Added UNIQUE constraint for NIF
   role VARCHAR(50) NOT NULL DEFAULT 'customer',
-  created_at TIMESTAMP DEFAULT NOW()
+  created_at TIMESTAMP DEFAULT NOW(),
+  -- NEW COLUMNS FOR PASSWORD SETUP / ACTIVATION FLOW
+  activation_token VARCHAR(36) UNIQUE, 
+  token_expires_at TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS products (
