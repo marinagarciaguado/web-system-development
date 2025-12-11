@@ -5,15 +5,18 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "dev": "node --watch index.js",
+    "dev": "node --watch --env-file .env index.js",
     "seed": "node db/populatedb.js",
     "lint": "eslint ."
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.19.2",
-    "pg": "^8.11.5"
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.11.5",
+    "zod": "^4.1.13"
   },
   "devDependencies": {
     "eslint": "^9.0.0",
