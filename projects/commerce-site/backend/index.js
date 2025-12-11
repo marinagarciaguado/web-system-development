@@ -1,3 +1,5 @@
+import userRoutes from './routes/userRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
 import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
@@ -20,6 +22,8 @@ app.use(requestLogger); // Logger must come after body parser to see the body
 // 2. Routes (ORDER: Auth should often come before other APIs for early processing)
 app.use('/api/auth', authRoutes); // Auth routes (login/register)
 app.use('/api/products', productRoutes);
+app.use('/api/users', userRoutes);   // admin-only user creation
+app.use('/api/orders', orderRoutes); // create/get orders
 
 // 3. 404 Handler / Unknown Endpoint (Must be placed before the final Error Handler)
 app.use(unknownEndpoint); 

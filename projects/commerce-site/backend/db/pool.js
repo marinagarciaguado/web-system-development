@@ -1,14 +1,15 @@
-import pg from 'pg';
+// backend/db/pool.js
+import pkg from 'pg';
 import 'dotenv/config';
-
-const { Pool } = pg;
+const { Pool } = pkg;
 
 const pool = new Pool({
   host: process.env.DB_HOST,
+  port: parseInt(process.env.DB_PORT || '5432', 10),
   user: process.env.DB_USER,
-  database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
+  database: process.env.DB_NAME,
+  // ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
 });
 
 export default pool;

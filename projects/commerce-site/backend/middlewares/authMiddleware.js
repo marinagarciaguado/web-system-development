@@ -1,52 +1,59 @@
-// backend/middlewares/authMiddleware.js
+// backend/controllers/authController.js
+import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import * as userModel from '../models/userModel.js';
+import { LoginSchema } from '../schemas/authSchema.js';
 
-// This is the core logic for checking if a user is authenticated (logged in)
-export const protect = (req, res, next) => {
-    // 1. Get token from the Authorization header (e.g., "Bearer <token>")
-    const authHeader = req.headers.authorization;
-    let token;
+// Helper wrapper for async/await
+const asyncHandler = fn => (req, res, next) =>
+  Promise.resolve(fn(req, res, next)).catch(next);
 
-    if (authHeader && authHeader.startsWith('Bearer ')) {
-        token = authHeader.split(' ')[1]; // Extract token part
+/**
+ * POST /api/auth/login
+ * Body: { email, password }
+ */
+export const login = asyncHandler(async (req, res) => {
+  // Validate the incoming body using your Zod schema
+  const result = LoginSchema.safeParse(req.body);
+
+  if (!result.success) {
+    return res.status(400).json({ errors: result.error.issues });
+  }
+
+  const { email, password } = result.data;
+
+  // Look up user by email
+  const user = await userModel.findByEmail(email);
+  if (!user) {
+    return res.status(401).json({ error: 'Invalid email or password.' });
+  }
+
+  // Compare password with hashed password
+  const validPass = await bcrypt.compare(password, user.password_hash);
+  if (!validPass) {
+    return res.status(401).json({ error: 'Invalid email or password.' });
+  }
+
+  // Generate JWT with the correct payload that your middleware expects
+  const token = jwt.sign(
+    {
+      userId: user.id,
+      role: user.role,
+      nif: user.nif,     // optional - helpful for orders
+      email: user.email  // optional
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: '2h' }
+  );
+
+  return res.status(200).json({
+    token,
+    user: {
+      id: user.id,
+      email: user.email,
+      phone: user.phone,
+      nif: user.nif,
+      role: user.role
     }
-
-    if (!token) {
-        // Forbidden: No token provided
-        return res.status(401).json({ 
-            error: 'Authorization token not found. Please log in.' 
-        });
-    }
-
-    try {
-        // 2. Verify the token using the secret from your .env file
-        // Throws an error if token is expired or invalid
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        
-        // 3. Attach the decoded user payload to the request object
-        // This makes the user's ID, username, and role available in controllers (e.g., req.user.id)
-        req.user = decoded; 
-        
-        // 4. Move to the next route handler/middleware
-        next();
-
-    } catch (error) {
-        // Unauthorized: Invalid or expired token
-        // Fulfills "Proper error handling for authentication failures"
-        return res.status(403).json({ 
-            error: 'Invalid or expired token. Access denied.' 
-        });
-    }
-};
-
-// Middleware to check if the authenticated user has the 'admin' role
-export const admin = (req, res, next) => {
-    // The previous 'protect' middleware ensures req.user exists
-    if (req.user && req.user.role === 'admin') {
-        next();
-    } else {
-        res.status(403).json({ 
-            error: 'Not authorized as an admin.' 
-        });
-    }
-};
+  });
+});
