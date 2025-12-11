@@ -2,7 +2,7 @@
 
 import pool from '../db/pool.js';
 // We assume you have created schemas/authSchema.js with ProductSchema and IdSchema
-import { ProductSchema, IdSchema } from '../schemas/authSchema.js'; 
+import { ProductSchema, IdSchema } from '../schemas/productSchema.js'; 
 
 // Utility function to wrap async controllers and automatically handle errors (Good Practice: Module 5/6)
 const asyncHandler = fn => (req, res, next) => {

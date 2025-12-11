@@ -1,7 +1,8 @@
 // backend/routes/authRoutes.js
 import { Router } from 'express';
-import { login } from '../controllers/authController.js';
-import { validateLogin } from '../schemas/authSchema.js';
+// UPDATE: Import the correct function names from authController.js
+import { loginUser, setInitialPassword } from '../controllers/authController.js';
+// REMOVED: validateLogin as validation is now handled inside the controller
 
 const router = Router();
 
@@ -10,8 +11,15 @@ const router = Router();
  * Body: { email, password }
  * Returns: { token }
  */
-router.post('/login', validateLogin, login);
+// UPDATE: Using the loginUser function
+router.post('/login', loginUser);
 
-// If you later want logout endpoint or refresh tokens, add here.
+/**
+ * POST /api/auth/set-password
+ * NEW: Public endpoint for client to set initial password using the activation token.
+ * Body: { token, password }
+ * Returns: { message, token, user }
+ */
+router.post('/set-password', setInitialPassword);
 
 export default router;

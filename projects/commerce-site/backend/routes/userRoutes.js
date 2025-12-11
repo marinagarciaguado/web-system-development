@@ -1,11 +1,13 @@
 // backend/routes/userRoutes.js
 import { Router } from 'express';
-import { createUser } from '../controllers/userController.js';
+// UPDATE: Use the new function name
+import { adminCreateClient } from '../controllers/userController.js'; 
 import { protect, admin } from '../middlewares/authMiddleware.js';
 
 const router = Router();
 
-// Only admin can create users
-router.post('/', protect, admin, createUser);
+// Only admin can create clients
+// UPDATE: Route uses the new controller
+router.post('/', protect, admin, adminCreateClient);
 
 export default router;
