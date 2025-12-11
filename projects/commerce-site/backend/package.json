@@ -1,12 +1,13 @@
 {
   "name": "backend",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node index.js",
     "dev": "node --watch --env-file .env index.js",
-    "seed": "node db/populatedb.js",
+    "seed": "node --env-file .env db/populatedb.js",
     "lint": "eslint ."
   },
   "dependencies": {
