@@ -5,6 +5,9 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 import { ProductSchema } from '../../schemas/productSchemas'; 
 
+// Use the environment variable for the API base URL
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
+
 const AdminProductCRUD = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]); // State for categories dropdown
@@ -16,9 +19,10 @@ const AdminProductCRUD = () => {
   const initialValues = {
     name: editingProduct?.name || '',
     description: editingProduct?.description || '',
-    price: editingProduct?.price.toString() || '',
-    stock: editingProduct?.stock.toString() || '',
-    category_id: editingProduct?.category_id.toString() || '',
+    // Ensure numbers are converted back to strings for form fields
+    price: editingProduct?.price?.toString() || '',
+    stock: editingProduct?.stock?.toString() || '',
+    category_id: editingProduct?.category_id?.toString() || '',
     image_url: editingProduct?.image_url || '',
   };
 
@@ -27,7 +31,8 @@ const AdminProductCRUD = () => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get('http://localhost:3001/api/products');
+      // **FIXED API URL**
+      const { data } = await axios.get(`${API_BASE_URL}/api/products`);
       setProducts(data);
     } catch (err) {
       setError('Failed to fetch products. Check network and backend status.');
@@ -36,11 +41,10 @@ const AdminProductCRUD = () => {
     }
   };
 
-  // NOTE: You need a dedicated endpoint for categories in your backend for this to work.
-  // Assuming a simple /api/categories endpoint exists and returns { id, name }
+  // NOTE: CATEGORIES ENDPOINT IS MOCKED - You would implement a real one later
   const fetchCategories = async () => {
     try {
-      // TEMPORARY MOCK DATA: Replace with an actual API call
+      // TEMPORARY MOCK DATA: For testing the dropdown functionality
       setCategories([
         { id: 1, name: 'Produce' },
         { id: 2, name: 'Packaged Goods' },
@@ -48,7 +52,6 @@ const AdminProductCRUD = () => {
       ]);
     } catch (err) {
       console.error('Failed to fetch categories:', err);
-      // Fallback: If category API fails, the user can still create products, but must guess the ID.
     }
   };
 
@@ -63,11 +66,11 @@ const AdminProductCRUD = () => {
     setError(null);
     try {
       if (editingProduct) {
-        // UPDATE Logic (PUT)
-        await axios.put(`http://localhost:3001/api/products/${editingProduct.id}`, values);
+        // UPDATE Logic (PUT) - **FIXED API URL**
+        await axios.put(`${API_BASE_URL}/api/products/${editingProduct.id}`, values);
       } else {
-        // CREATE Logic (POST)
-        await axios.post('http://localhost:3001/api/products', values);
+        // CREATE Logic (POST) - **FIXED API URL**
+        await axios.post(`${API_BASE_URL}/api/products`, values);
       }
       
       resetForm();
@@ -85,7 +88,8 @@ const AdminProductCRUD = () => {
   const handleDelete = async (productId) => {
     if (!window.confirm('Are you sure you want to delete this product?')) return;
     try {
-      await axios.delete(`http://localhost:3001/api/products/${productId}`);
+      // DELETE Logic - **FIXED API URL**
+      await axios.delete(`${API_BASE_URL}/api/products/${productId}`);
       await fetchProducts();
     } catch (err) {
       setError('Failed to delete product. Check network.');
@@ -94,8 +98,8 @@ const AdminProductCRUD = () => {
 
   // --- Rendering ---
   
-  if (loading) return <div>Cargando productos...</div>;
-  if (error && !products.length) return <div className="alert alert-error">{error}</div>;
+  if (loading) return <div className="admin-crud-container">Cargando productos...</div>;
+  if (error && !products.length) return <div className="admin-crud-container"><div className="alert alert-error">{error}</div></div>;
 
   return (
     <div className="admin-crud-container">
@@ -107,11 +111,11 @@ const AdminProductCRUD = () => {
         {error && <div className="alert alert-error">{error}</div>}
 
         <Formik
-          key={editingProduct ? editingProduct.id : 'new'} // Key forces re-render when switching from edit to new
+          key={editingProduct ? editingProduct.id : 'new'} 
           initialValues={initialValues}
           validationSchema={toFormikValidationSchema(ProductSchema)}
           onSubmit={handleFormSubmit}
-          enableReinitialize={true} // Re-initialize form when editingProduct state changes
+          enableReinitialize={true} 
         >
           {({ isSubmitting, resetForm }) => (
             <Form>
@@ -213,7 +217,8 @@ const AdminProductCRUD = () => {
                 <td>{product.name}</td>
                 <td>{product.price}€</td>
                 <td>{product.stock}</td>
-                <td>{product.category_name}</td>
+                {/* Using category_name returned by the backend model */}
+                <td>{product.category_name}</td> 
                 <td>
                   <button 
                     onClick={() => setEditingProduct(product)}
