@@ -1,6 +1,6 @@
-/* src/components/Navbar.css (FINAL CLEANUP) */
+/* src/components/Navbar.css (FINAL FIXES) */
 
-/* 1. Main Bar Container */
+/* 1. Main Bar Container (Thinner bar, sticky) */
 .navbar-header {
     display: flex;
     justify-content: space-between;
@@ -8,7 +8,7 @@
     padding: 8px 40px; 
     background-color: white; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    height: 60px; /* Thinner bar */
+    height: 60px; 
     z-index: 10;
     position: sticky;
     top: 0;
@@ -16,22 +16,19 @@
 
 /* 2. Logo Sizing Fix */
 .brand-logo-img {
-    height: 40px; /* Ensures the logo fits perfectly in the 60px bar */
+    height: 50px; /* CRITICAL FIX: Increased logo size */
     width: auto;
 }
 
-/* 3. Navigation Links (Removing the BOX) */
+/* 3. Navigation Links (Removing the BOX, Increasing Spacing) */
 .navbar-links {
-    /* REMOVED: Background or border styles that might create the box effect */
-    background: none !important;
+    background: none !important; /* CRITICAL FIX: Removes the unwanted box background */
     display: flex;
     align-items: center;
-    /* Ensure links flow naturally */
 }
 
-/* 4. Individual Links */
 .navbar-links a {
-    margin: 0 10px;
+    margin: 0 20px; /* CRITICAL FIX: Increased horizontal spacing */
     text-decoration: none;
     color: #555;
     font-weight: 500;
@@ -43,7 +40,7 @@
     color: var(--primary-color); 
 }
 
-/* 5. Login/Session Button (Keep dark for contrast) */
+/* 5. Login/Session Button */
 .navbar-auth .btn-primary {
     background-color: #333; 
     color: white;

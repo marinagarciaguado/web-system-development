@@ -5,8 +5,8 @@ import IngredientVisualMap from '../components/IngredientVisualMap';
 const Home = () => {
   return (
     <div className="home-container">
-      {/* -------------------- SECTION 1: WOOD BACKGROUND -------------------- */}
-      {/* This section will sit over the body's wood background */}
+      
+      {/* -------------------- SECTION 1: WOOD BACKGROUND (Transparent) -------------------- */}
       <section className="home-section freshness-banner initial-wood-section">
         <h2>EL MÁS FRESCO DE LOS FRESCOS</h2>
         <p>
@@ -17,7 +17,6 @@ const Home = () => {
       </section>
 
       {/* -------------------- SECTION 2: LIGHT GREY BACKGROUND WRAPPER -------------------- */}
-      {/* This wrapper element enforces a solid, light background for all content below the fold */}
       <div className="scrolling-content-wrapper">
           
           {/* Brand History & Values */}
@@ -38,11 +37,11 @@ const Home = () => {
           
           <hr className="section-divider" />
 
-          {/* Product Range / Visual Map Placeholder */}
+          {/* Product Range / Visual Map Placeholder (ELEGANT CONTENT) */}
           <section className="home-section ingredients-section">
-            <h3>NUESTRA GAMA DE PRODUCTOS Y SUS INGREDIENTES</h3>
+            <h3>LA ESENCIA DEL SABOR ANDALUZ</h3>
             <p className="subtitle">
-              Explora los ingredientes de nuestros productos estrella: Gazpacho y Salmorejo, y nuestras Cremas Frescas (Zanahoria con Manzana, Calabacín, Vichyssoise).
+              Descubre la pureza de nuestra gama de productos. Cada botella es un tributo a la frescura, desde nuestros pilares, el Gazpacho y Salmorejo, hasta nuestras exclusivas Cremas Frescas (Zanahoria con Manzana, Calabacín, Vichyssoise).
             </p>
             
             <IngredientVisualMap /> 

@@ -5,8 +5,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: #213547; /* Set default text color for light mode */
-  background-color: #ffffff; /* Set default background for light mode */
+  color: #213547;
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -17,9 +17,8 @@
   --primary-color: #f7a31b; /* Capón de Galera Accent/Yellow */
   --primary-hover: #e09214; 
   --text-main: #1f2937;
-  --text-secondary: #6b7280;
+  --bg-light: #f4f4f9; /* Light grey background color */
   --danger: #ef4444;
-  --success: #10b981;
 }
 
 * {
@@ -32,93 +31,90 @@ html, body, #root {
   min-height: 100vh;
 }
 
-/* --- Body / Wood Background Styles --- */
+/* --- Body / Wood Background (FIXED - NO BACKGROUND IMAGE HERE) --- */
 body {
   margin: 0;
   min-height: 100vh;
+  /* CRITICAL FIX: Base background is solid light grey for consistency on all pages */
+  background-color: var(--bg-light); 
   
-  /* Apply the wood texture background */
-  background-image: url('/woodBackground.jpg'); 
-  background-repeat: no-repeat; /* CRITICAL FIX: No longer tiling */
-  background-size: cover; /* CRITICAL FIX: Ensures the image fills the viewport */
-  background-position: center top; 
-  background-attachment: fixed; 
-  background-color: #f8f8f8; 
-  
-  font-family: 'Georgia', serif; /* Consistent brand font */
+  /* 4. Font Fix */
+  font-family: 'Georgia', serif; 
   color: #333;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* 4. Font Fix for Headings */
+h1, h2, h3 {
+    font-family: 'Georgia', serif; 
+    font-weight: 700;
 }
 
-/* Override input/button font for consistency */
-button, input, select, textarea {
-    font-family: inherit;
-}
-
-/* --- Navbar Logo Fix --- */
+/* --- Navbar Logo Fix (Item 2) --- */
+/* The actual logo height fix is in Navbar.css, but this ensures no conflicts */
 .brand-logo-img {
-    height: 40px; /* CRITICAL FIX: Ensures logo fits the thin navbar */
     width: auto;
 }
 
-
 /* --- Layout and Structural Styles --- */
 
+/* FIX: Main tag gets a solid white background by default for all pages */
 main {
     padding: 0; 
     min-height: 80vh;
+    background-color: white; 
 }
 
-/* This is the key content constraint for Home/Admin/Products pages */
-.home-container, .admin-crud-container, .container {
+/* CRITICAL FIX (Items 1, 5, 7): Rule to apply the wood background ONLY to the home page's main content */
+.home-container {
     max-width: 1200px; 
     margin: 0 auto; 
-    padding: 20px;
+    padding: 0; /* Remove padding from the outer container */
 }
 
-/* Home Page Specific Layout */
-
-/* 1. Wood Section Styling */
+/* 1. Wood Section Styling (Item 1, 7) */
 .initial-wood-section {
-    background: none; /* Make sure this section is transparent to show the body's background */
-    color: white; /* CRITICAL FIX: Makes text readable over dark wood */
+    /* CRITICAL FIX: This section now applies the wood background directly */
+    background-image: url('/woodBackground.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    
+    color: white; 
     min-height: 500px; 
     padding-top: 100px;
     padding-bottom: 100px;
 }
 
 .initial-wood-section h2, .initial-wood-section p {
-    color: white; /* Ensure text remains white even if inherited color changes */
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* Optional: Adds a drop shadow for readability */
+    color: white; 
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5); 
 }
 
 /* 2. Light Grey Section Wrapper */
 .scrolling-content-wrapper {
-    background-color: #f4f4f9; /* Light grey background as requested */
-    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2); /* Lift effect for transition */
-    padding-top: 40px; /* Add some padding inside the wrapper */
+    background-color: var(--bg-light); /* Light grey background */
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2); 
+    /* Padding is applied inside the wrapper for the content */
 }
 
-/* General Section Spacing */
+/* General Section Spacing (applied to sections inside the wrappers) */
 .home-container .home-section {
-    padding: 60px 0; 
+    padding: 60px 20px; /* Re-apply horizontal padding */
     border-top: 1px solid #eee; 
     margin-bottom: 0;
 }
 
-/* Two-Column Layout for History Section (Image on one side, text on the other) */
+/* Two-Column Layout for History Section */
 .two-column-layout {
     display: flex;
     align-items: center;
     gap: 80px; 
+}
+
+/* 5. Indent Fix */
+.history-text p {
+    line-height: 1.8; /* Improves readability */
+    padding-right: 20px;
 }
 
 .history-text {
@@ -139,31 +135,6 @@ main {
     margin: 40px 0;
 }
 
-/* Ingredients List Styling */
-.ingredients-section ul {
-    list-style: none;
-    padding-left: 0;
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-}
-
-.ingredients-section ul li {
-    margin-bottom: 5px;
-    padding-left: 1.5em; 
-    position: relative;
-}
-
-.ingredients-section ul li::before {
-    content: '•'; 
-    color: var(--primary-color);
-    font-weight: bold;
-    display: inline-block;
-    width: 1em;
-    margin-left: -1em;
-}
-
 /* Spacing to prevent clash with Footer */
 .home-container {
     padding-bottom: 100px; 
@@ -175,7 +146,7 @@ footer {
 }
 
 
-/* --- Admin CRUD & General Form/Table Styles (from previous steps) --- */
+/* --- Admin CRUD & General Form/Table Styles (Keep these the same) --- */
 
 .admin-crud-container {
     max-width: 1200px;

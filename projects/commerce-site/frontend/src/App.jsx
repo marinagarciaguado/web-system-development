@@ -1,3 +1,4 @@
+//app.jsx
 import { Routes, Route } from 'react-router-dom';
 // Import or create placeholder components for all pages
 import Home from './pages/Home';
