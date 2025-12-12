@@ -283,3 +283,7 @@ tr:hover {
     background-color: #f9f9f9;
 }
 
+input, select, textarea {
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
+}

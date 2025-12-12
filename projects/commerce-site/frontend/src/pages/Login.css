@@ -1,0 +1,125 @@
+/* src/pages/Login.css */
+
+.login-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh; /* Centrado vertical */
+  padding: 20px;
+  background-color: transparent; /* Deja ver la madera de fondo si la hay, o el gris */
+}
+
+.login-card {
+  background-color: white;
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Sombra suave y moderna */
+  width: 100%;
+  max-width: 450px; /* Ancho controlado */
+  text-align: center;
+  border: 1px solid #e5e7eb;
+}
+
+.login-card h1 {
+  color: #1f2937; /* Tu gris oscuro corporativo */
+  margin-bottom: 0.5rem;
+  font-family: 'Georgia', serif;
+  font-size: 2rem;
+}
+
+.login-subtitle {
+  color: #6b7280;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+/* Estilos del Formulario */
+.login-form .form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.95rem;
+}
+
+.login-form .form-control {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: white; /* Aseguramos fondo blanco */
+}
+
+.login-form .form-control:focus {
+  outline: none;
+  border-color: var(--primary-color, #f7a31b);
+  box-shadow: 0 0 0 3px rgba(247, 163, 27, 0.15);
+}
+
+/* Estilo de Errores */
+.error-message {
+  color: var(--danger, #ef4444);
+  font-size: 0.85rem;
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+.alert-error {
+  background-color: #fef2f2;
+  border: 1px solid #fee2e2;
+  color: #991b1b;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+/* Botón Principal */
+.btn-login {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary-color, #f7a31b);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s;
+  margin-top: 10px;
+}
+
+.btn-login:hover {
+  background-color: var(--primary-hover, #e09214);
+}
+
+.btn-login:disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+}
+
+/* Footer del Login */
+.login-footer {
+  margin-top: 2rem;
+  border-top: 1px solid #f3f4f6;
+  padding-top: 1.5rem;
+}
+
+.forgot-password-link {
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.small-text {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
