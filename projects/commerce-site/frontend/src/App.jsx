@@ -19,7 +19,7 @@ function App() {
     <Routes>
       {/* 1. Public Routes that use the standard header/footer layout */}
       <Route path="/" element={<MainLayout />}>
-        <Route index element={<HomePage />} />
+        <Route index element={<Home />} />
         <Route path="products" element={<ProductCatalogPage />} />
         <Route path="contact" element={<ContactPage />} />
         <Route path="login" element={<Login />} />
