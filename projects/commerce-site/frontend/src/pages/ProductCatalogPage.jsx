@@ -1,138 +1,48 @@
-import React, { useState } from 'react';
-import './ProductCatalogPage.css';
-
-import imgGazpacho from '../assets/products/gazpacho.png';      
-import imgSalmorejo from '../assets/products/salmorejo.png';    
-import imgCalabaza from '../assets/products/crema-calabaza.jpeg'; 
-import imgCalabacin from '../assets/products/crema-calabacin.jpeg'; 
+import React, { useEffect, useState } from 'react';
+import { getProducts } from '../services/api'; 
+import ProductCard from '../components/ProductCard';
+// Si el CSS de catalogos aun existe, puedes importarlo, sino, confia en App.css
+// import './ProductCatalogPage.css'; 
 
 const ProductCatalogPage = () => {
-  const [selectedProduct, setSelectedProduct] = useState(null);
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-  const products = [
-    {
-      id: 1,
-      name: "Gazpacho Fresco",
-      subtitle: "Sin Pan - Receta Original",
-      description: "El sabor más puro elaborado con Tomate de Los Palacios y Aceite de Oliva Virgen Extra. Sin aditivos.",
-      features: ["Sin Pan", "Tomate Los Palacios", "Vegano"],
-      image: imgGazpacho, 
-      bgColor: "#ff6b6b",
-      details: {
-        ingredientes: "Tomate, Pimiento, Pepino, AOVE, Vinagre, Sal y Ajo.",
-        nutricion: "Producto fresco. Conservar en frío.",
-        formato: "Botellas PET de 1L, 500ml y 250ml."
-      }
-    },
-    {
-      id: 2,
-      name: "Salmorejo Fresco",
-      subtitle: "Con Aceite de Oliva Virgen Extra",
-      description: "Textura cremosa y sabor intenso. Elaborado con pan artesano y tomates seleccionados.",
-      features: ["Textura Cremosa", "Rico en Fibra", "AOVE (14%)"],
-      image: imgSalmorejo,
-      bgColor: "#ff9f43",
-      details: {
-        ingredientes: "Tomate, AOVE (14%), pan, vinagre, sal y ajo.",
-        nutricion: "174 kcal / 100ml.",
-        formato: "Botella 1000 ml."
-      }
-    },
-    {
-      id: 3,
-      name: "Crema de Calabaza",
-      subtitle: "100% Natural",
-      description: "Suave y ligera (34 kcal). Ideal para cuidarse sin renunciar al sabor.",
-      features: ["34 kcal/100g", "Sin Lactosa", "Sin Gluten"],
-      image: imgCalabaza,
-      bgColor: "#feca57",
-      details: {
-        ingredientes: "Calabaza, verduras, agua, aceite y especias.",
-        nutricion: "34 kcal / 100g.",
-        formato: "Sin alérgenos."
-      }
-    },
-    {
-      id: 4,
-      name: "Crema de Calabacín",
-      subtitle: "Receta Casera",
-      description: "Elaborada con calabacines frescos. Cena ligera y saludable.",
-      features: ["56 kcal/100g", "Vitamina C", "Sin Alérgenos"],
-      image: imgCalabacin,
-      bgColor: "#1dd1a1",
-      details: {
-        ingredientes: "Calabacín, patata, cebolla, aceite, agua y sal.",
-        nutricion: "56 kcal / 100g.",
-        formato: "Vegano."
-      }
-    }
-  ];
+    useEffect(() => {
+        // [PASO 1: FETCH DATA FROM API]
+        // Se llama a la funcion que consulta la API del backend
+        getProducts()
+            .then(data => {
+                setProducts(data);
+            })
+            .catch(err => {
+                console.error("Error al obtener productos:", err);
+                setError('Error al cargar productos. Por favor, verifica el estado del backend.');
+            })
+            .finally(() => setLoading(false));
+    }, []);
 
-  return (
-    <div className="catalog-container">
-      <div className="catalog-header">
-        <h1>Nuestros Productos</h1>
-        <p>Sabor fresco y natural del campo a tu mesa.</p>
-      </div>
+    if (loading) return <div className="container">Cargando catálogo...</div>;
+    if (error) return <div className="container"><p style={{color:'red'}}>{error}</p></div>;
 
-      <div className="products-grid">
-        {products.map((product) => (
-          <div key={product.id} className="product-card">
-            <div className="product-image-wrapper">
-              <div className="img-placeholder" style={{ backgroundColor: product.bgColor }}>
-                {product.image ? (
-                  <img src={product.image} alt={product.name} />
-                ) : (
-                  <span>{product.name}</span>
-                )}
-              </div>
-            </div>
-
-            <div className="product-content">
-              <div className="product-tags">
-                {product.features.map((tag, index) => (
-                  <span key={index} className="tag">{tag}</span>
+    return (
+        <div className="container">
+            <h1>NUESTROS PRODUCTOS</h1>
+            <p className="catalog-subtitle" style={{textAlign: 'center', marginBottom: '40px', color: 'var(--color-text-dark)'}}>
+                Descubre nuestra selección fresca y natural, administrada por nuestro equipo de gestión de productos.
+            </p>
+            
+            <div className="grid">
+                {products.map((p) => (
+                    // Mapeamos los productos obtenidos del backend a la tarjeta
+                    <ProductCard key={p.id} product={p} /> 
                 ))}
-              </div>
-              
-              <h2>{product.name}</h2>
-              <h3 className="product-subtitle">{product.subtitle}</h3>
-              <p className="product-description">{product.description}</p>
-              
-              <button 
-                className="btn-details"
-                onClick={() => setSelectedProduct(product)}
-              >
-                Ver Ficha Técnica
-              </button>
             </div>
-          </div>
-        ))}
-      </div>
-
-      {/* MODAL / VENTANA EMERGENTE */}
-      {selectedProduct && (
-        <div className="modal-overlay" onClick={() => setSelectedProduct(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="close-btn" onClick={() => setSelectedProduct(null)}>×</button>
             
-            <h2 style={{ color: 'var(--primary-color, #f7a31b)' }}>{selectedProduct.name}</h2>
-            <hr style={{ margin: '10px 0', border: '0', borderTop: '1px solid #eee' }} />
-            
-            <div className="modal-body">
-              <p><strong>Ingredientes:</strong><br/> {selectedProduct.details.ingredientes}</p>
-              <p><strong>Nutrición:</strong><br/> {selectedProduct.details.nutricion}</p>
-              <p><strong>Formato:</strong><br/> {selectedProduct.details.formato}</p>
-            </div>
-
-            <button className="btn-details" onClick={() => setSelectedProduct(null)} style={{marginTop: '20px'}}>
-              Cerrar
-            </button>
-          </div>
+            {products.length === 0 && <p style={{textAlign: 'center', marginTop: '40px'}}>No se encontraron productos en el catálogo.</p>}
         </div>
-      )}
-    </div>
-  );
+    );
 };
 
 export default ProductCatalogPage;

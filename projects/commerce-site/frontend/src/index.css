@@ -100,8 +100,6 @@ main {
   border-radius: 8px; 
   border: 2px solid var(--color-text-light); 
 }
-/* --- FIN CAMBIO CRITICO --- */
-
 
 .scrolling-content-wrapper {
   background-color: var(--color-background-white);
