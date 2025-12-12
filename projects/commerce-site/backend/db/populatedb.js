@@ -24,7 +24,7 @@ const initSql = `
     CREATE TABLE users (
         id SERIAL PRIMARY KEY,
         email VARCHAR(255) NOT NULL UNIQUE,
-        password VARCHAR(255) NOT NULL,
+        password_hash TEXT NOT NULL,
         full_name VARCHAR(255),
         role VARCHAR(50) NOT NULL DEFAULT 'customer',
         created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW()
@@ -79,7 +79,7 @@ async function seedAdminUser() {
         const passwordHash = await bcrypt.hash('adminpassword', 10); // Contraseña por defecto
 
         const result = await pool.query(
-            `INSERT INTO users (email, password, full_name, role)
+            `INSERT INTO users (email, password_hash, full_name, role)
              VALUES ($1, $2, $3, 'admin')
              ON CONFLICT (email) DO NOTHING
              RETURNING email`,

@@ -1,6 +1,7 @@
 // backend/models/userModel.js
 import pool from '../db/pool.js';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt'
 
 /**
  * Find a user by email (used for login and existence checks)
@@ -102,8 +103,24 @@ export function generateToken(user) {
  * Helper: basic credential lookup by email 
  * NOTE: Based on implementation, it looks up by email only.
  */
-export async function findUserByCredentials(email) {
-  // returns full row including password_hash for auth comparisons
-  const res = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
-  return res.rows[0];
-}
+export const findByCredentials = async (email, password) => {
+    const user = await findByEmail(email);
+    if (!user) {
+        return null; // Usuario no encontrado
+    }
+
+    if (!user.password_hash) {
+        // Esto captura usuarios antiguos o mal sembrados
+        console.error(`User ${user.email} found but has no password hash.`);
+        return null;
+    }
+    
+    // El error que tuviste antes se corrige aqui:
+    const isPasswordCorrect = await bcrypt.compare(password, user.password_hash);
+
+    if (isPasswordCorrect) {
+        return user;
+    }
+
+    return null;
+};
