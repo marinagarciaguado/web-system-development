@@ -3,32 +3,49 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 40px;
-    background-color: #fff; /* White background */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow like in the design */
+    padding: 8px 40px; /* Thinner padding */
+    background-color: white; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    height: 60px; /* Explicit height */
+    z-index: 10;
+    position: sticky; /* Keep the navbar visible when scrolling */
+    top: 0;
+}
+
+/* Logo Styling */
+.brand-logo-img {
+    height: 40px; /* Ensures the logo fits the 60px bar height */
+    width: auto;
 }
 
 .navbar-logo a {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
+    /* Ensure the link around the logo has no weird styling */
     text-decoration: none;
 }
 
+/* Navigation Links (Removing unwanted box/background) */
+.navbar-links {
+    background: none; /* Crucial: ensures no background box */
+    display: flex;
+    align-items: center;
+}
+
 .navbar-links a {
-    margin: 0 15px;
+    margin: 0 10px;
     text-decoration: none;
     color: #555;
     font-weight: 500;
     transition: color 0.2s;
+    padding: 5px 0; /* Ensures consistent vertical space for links */
 }
 
 .navbar-links a:hover {
-    color: #f7a31b; /* Use a color from your design */
+    color: var(--primary-color); 
 }
 
+/* Right-Side Authentication Button */
 .navbar-auth .btn-primary {
-    background-color: #333; /* Dark button like the design */
+    background-color: #333; 
     color: white;
     padding: 8px 15px;
     text-decoration: none;

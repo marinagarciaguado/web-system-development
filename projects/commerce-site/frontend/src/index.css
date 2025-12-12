@@ -1,4 +1,33 @@
 /* --- Global Vite/React Reset Styles --- */
+
+/* ... (existing global styles) ... */
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  
+  /* Apply the wood texture background */
+  background-image: url('/woodBackground.jpg'); /* References the file in the PUBLIC folder */
+  background-repeat: repeat;
+  background-attachment: fixed; /* Optional: Makes the texture stay put when scrolling */
+  background-color: #f8f8f8; 
+  
+  font-family: 'Georgia', serif; 
+  color: #333;
+}
+
+/* ... (rest of the file content) ... */
+
+/* Ensure Logo displays correctly */
+.brand-logo-img {
+    height: 150px; /* Adjust height as needed */
+    width: auto;
+}
+
+/* Override button font for consistency */
+button, input, select, textarea {
+    font-family: inherit;
+}
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -245,4 +274,21 @@ th {
 
 tr:hover {
     background-color: #f9f9f9;
+}
+
+/* src/index.css (Add to Layout Styles section) */
+
+/* The element that changes the background */
+.scrolling-content-wrapper {
+    background-color: white; /* Use white or #f4f4f9 light grey */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Adds a lift effect */
+}
+
+/* Ensure the first section flows naturally over the body background */
+.initial-wood-section {
+    background: none; /* Make sure this section is transparent */
+    color: white; /* Adjust text color for visibility over dark wood */
+    min-height: 400px; /* Give it some vertical height */
+    padding-top: 100px;
+    padding-bottom: 100px;
 }

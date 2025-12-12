@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 // Import a basic CSS file for styling
 import './Navbar.css'; 
+import logoImage from '../assets/logoCaponFondoBlanco.jpg'
 
 const Navbar = () => {
   const { isAuthenticated, isAdmin, logout, user } = useAuth();
@@ -17,9 +18,12 @@ const Navbar = () => {
   return (
     <header className="navbar-header">
       <div className="navbar-logo">
-        <Link to="/">CAPÓN DE GALERA</Link>
+        <Link to="/">
+          {/* Replace text with the logo image */}
+          <img src={logoImage} alt="Capón de Galera Logo" className="brand-logo-img" /> 
+        </Link>
       </div>
-      
+
       <nav className="navbar-links">
         <Link to="/">INICIO</Link>
         <Link to="/products">PRODUCTO</Link> 
@@ -48,7 +52,7 @@ const Navbar = () => {
         ) : (
           /* When NOT authenticated, show the Login/Search Button */
           <Link to="/login" className="btn btn-primary">
-            ENCUENTRA TU TIENDA / LOGIN
+             INICIA SESIÓN
           </Link>
         )}
       </div>
