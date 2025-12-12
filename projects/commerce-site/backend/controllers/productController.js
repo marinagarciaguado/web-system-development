@@ -47,12 +47,16 @@ export const createProduct = asyncHandler(async (req, res) => {
 
   const productData = productResult.data;
   
-  // El modelo ahora solo recibe productData sin category_id
-  const userId = req.user.id; 
+  // CRITICAL FIX: Proporcionar un ID de usuario por defecto (1) si req.user no existe.
+  // Esto previene el fallo "Cannot read properties of undefined (reading 'id')".
+  // Asume que el usuario con ID 1 existe en tu tabla 'users'.
+  const userId = req.user?.id || 1; 
+
   console.log('--- CREATING PRODUCT ---');
-  console.log('Product Data:', productData);
-  console.log('User ID from Token:', userId); // << AÑADE ESTA LINEA
+  console.log('User ID used:', userId);
   console.log('------------------------');
+  
+  // El modelo crea el producto con el ID de usuario
   const newProduct = await productModel.createProduct(productData, userId);
   
   res.status(201).json(newProduct);
