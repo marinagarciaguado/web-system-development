@@ -1,25 +1,41 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Admin from './pages/Admin';
-import Login from './pages/Login';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+// Import or create placeholder components for all pages
+import HomePage from './pages/HomePage';
+import ProductCatalogPage from './pages/ProductCatalogPage';
+import ContactPage from './pages/ContactPage';
+import LoginPage from './pages/LoginPage';
+import SetPasswordPage from './pages/SetPasswordPage';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminProductCRUD from './pages/admin/AdminProductCRUD';
+import AdminOrderManagement from './pages/admin/AdminOrderManagement';
+
+// Placeholder Layout/Wrapper components (will be created next)
+import MainLayout from './components/layout/MainLayout';
+import ProtectedRoute from './components/auth/ProtectedRoute';
+import AdminRoute from './components/auth/AdminRoute';
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="app-container">
-        <Navbar />
+    <Routes>
+      {/* 1. Public Routes that use the standard header/footer layout */}
+      <Route path="/" element={<MainLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="products" element={<ProductCatalogPage />} />
+        <Route path="contact" element={<ContactPage />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="set-password" element={<SetPasswordPage />} />
+      </Route>
 
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
-        </main>
-      </div>
-    </BrowserRouter>
+      {/* 2. Protected Admin Routes (No MainLayout needed for dashboard) */}
+      <Route path="/admin" element={<AdminRoute />}>
+        <Route index element={<AdminDashboard />} />
+        <Route path="products" element={<AdminProductCRUD />} />
+        <Route path="orders" element={<AdminOrderManagement />} />
+      </Route>
+      
+      {/* 3. Catch-all for 404 */}
+      <Route path="*" element={<div>404 - Not Found</div>} />
+    </Routes>
   );
 }
 
