@@ -1,15 +1,14 @@
-import userRoutes from './routes/userRoutes.js';
-import orderRoutes from './routes/orderRoutes.js';
 import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
-
-// NEW IMPORTS
+import userRoutes from './routes/userRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
 import { unknownEndpoint } from './middlewares/unknownEndpointMiddleware.js'; 
 import authRoutes from './routes/authRoutes.js'; // Will be created soon
 import { requestLogger } from './middlewares/loggerMiddleware.js';
 import { errorHandler } from './middlewares/errorMiddleware.js';
 import productRoutes from './routes/productRoutes.js'; // Already existed
+import contactRouter from './routes/contactRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -24,6 +23,7 @@ app.use('/api/auth', authRoutes); // Auth routes (login/register)
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);   // admin-only user creation
 app.use('/api/orders', orderRoutes); // create/get orders
+app.use('/api/contact', contactRouter);
 
 // 3. 404 Handler / Unknown Endpoint (Must be placed before the final Error Handler)
 app.use(unknownEndpoint); 
