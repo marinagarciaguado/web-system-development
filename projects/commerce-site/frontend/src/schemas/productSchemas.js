@@ -17,11 +17,7 @@ export const ProductSchema = z.object({
     .transform(val => parseInt(val))
     .refine(val => val >= 0, { message: "Stock must be a non-negative integer." }),
 
-  // category_id needs to be coerced from a string to an integer
-  category_id: z.string()
-    .refine(val => !isNaN(parseInt(val)), { message: "Category must be selected." })
-    .transform(val => parseInt(val))
-    .refine(val => val > 0, { message: "Category ID must be positive." }),
+  // Se elimina category_id del frontend (ya no se requiere)
     
   image_url: z.string().url("Image URL must be a valid URL.").optional().or(z.literal('')),
 });

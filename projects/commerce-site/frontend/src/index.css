@@ -40,14 +40,11 @@ main {
   padding: 20px;
 }
 
-/* --- CAMBIO CRITICO: VUELTA AL FONDO DE MADERA --- */
 .initial-wood-section {
-  /* Se asume que woodBackground.jpg esta en la carpeta public/ */
   background-image: url('/woodBackground.jpg'); 
   background-repeat: no-repeat;
   background-size: cover; 
   background-position: center top; 
-  
   color: var(--color-text-light); 
   min-height: 550px; 
   padding-top: 100px;
@@ -57,7 +54,6 @@ main {
   overflow: hidden;
 }
 
-/* El overlay debe ser mas oscuro si la madera es clara */
 .initial-wood-section::before {
   content: '';
   position: absolute;
@@ -65,7 +61,6 @@ main {
   left: 0;
   right: 0;
   bottom: 0;
-  /* Hacemos el overlay un poco mas oscuro (0.4) para que el texto blanco resalte mas */
   background: rgba(0, 0, 0, 0.4); 
   z-index: 1; 
 }
@@ -96,7 +91,7 @@ main {
   max-width: 800px; 
   margin: 0 auto; 
   padding: 15px 30px;
-  background-color: rgba(219, 199, 199, 0.308);
+  background-color: rgba(183, 28, 28, 0.7);
   border-radius: 8px; 
   border: 2px solid var(--color-text-light); 
 }
@@ -160,7 +155,7 @@ main {
 .btn-primary {
   display: inline-block;
   background-color: var(--color-accent-yellow);
-  color: var(--color-text-light);
+  color: var(--color-text-dark); /* CAMBIO: Texto oscuro en boton amarillo */
   font-weight: bold;
   text-decoration: none;
   padding: 12px 25px;

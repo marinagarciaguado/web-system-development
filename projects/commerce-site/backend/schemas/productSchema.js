@@ -17,6 +17,5 @@ export const ProductSchema = z.object({
   price: z.number().min(0, "Price cannot be negative."),
   stock: z.number().int().min(0, "Stock must be a non-negative integer.").optional().default(0),
   image_url: z.string().url("Image URL must be a valid URL.").optional().nullable(),
-  // REQUIRED: Model needs category_id
-  category_id: z.number().int().positive("Category ID must be a positive integer.") 
+  // [REMOVIDO] Se quita category_id
 });

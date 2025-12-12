@@ -1,5 +1,6 @@
 // backend/controllers/productController.js
 import * as productModel from '../models/productModel.js';
+// [MODIFICADO] El ProductSchema se mantiene, aunque ya no tiene category_id
 import { ProductSchema, IdSchema } from '../schemas/productSchema.js'; 
 
 // async wrapper for error handling
@@ -10,7 +11,6 @@ const asyncHandler = fn => (req, res, next) => Promise.resolve(fn(req, res, next
  * Fetches all products (Public access)
  */
 export const getProducts = asyncHandler(async (req, res) => {
-  // FIX: Match model function name: findAll -> getAllProducts
   const products = await productModel.getAllProducts(); 
   res.status(200).json(products); 
 });
@@ -26,7 +26,6 @@ export const getProductById = asyncHandler(async (req, res) => {
   }
   const id = idResult.data.id;
 
-  // FIX: Match model function name: findById -> getProductById
   const product = await productModel.getProductById(id); 
 
   if (!product) {
@@ -48,11 +47,9 @@ export const createProduct = asyncHandler(async (req, res) => {
 
   const productData = productResult.data;
   
-  // CRITICAL FIX: The protect middleware attached the user object (from the JWT) to req.
-  // The model requires the user ID to record who created the product.
+  // El modelo ahora solo recibe productData sin category_id
   const userId = req.user.id; 
   
-  // Model function signature is (productData, userId)
   const newProduct = await productModel.createProduct(productData, userId);
   
   res.status(201).json(newProduct);
@@ -79,7 +76,7 @@ export const updateProduct = asyncHandler(async (req, res) => {
   
   const productData = productResult.data;
 
-  // FIX: Match model function name and argument order: update -> updateProduct(id, productData)
+  // El productData ya no contiene category_id
   const updatedProduct = await productModel.updateProduct(id, productData);
 
   if (!updatedProduct) {
@@ -100,7 +97,6 @@ export const deleteProduct = asyncHandler(async (req, res) => {
   }
   const id = idResult.data.id;
 
-  // FIX: Match model function name: remove -> deleteProduct
   const deletedCount = await productModel.deleteProduct(id);
 
   if (deletedCount === 0) {

@@ -3,7 +3,6 @@
 DROP TABLE IF EXISTS order_items;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS products;
-DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS users;
 
 -- Ensure tables are created in a logical order (users -> categories -> products/orders)
@@ -21,13 +20,6 @@ CREATE TABLE IF NOT EXISTS users (
   token_expires_at TIMESTAMP
 );
 
--- NEW TABLE: Categories
-CREATE TABLE IF NOT EXISTS categories (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(255) NOT NULL UNIQUE,
-  created_at TIMESTAMP DEFAULT NOW()
-);
-
 -- UPDATED TABLE: Products (with foreign keys)
 CREATE TABLE IF NOT EXISTS products (
   id SERIAL PRIMARY KEY,
@@ -37,8 +29,6 @@ CREATE TABLE IF NOT EXISTS products (
   stock INTEGER NOT NULL DEFAULT 0,
   image_url TEXT,
   created_at TIMESTAMP DEFAULT NOW(),
-  -- NEW FOREIGN KEY: Link to the categories table
-  category_id INTEGER REFERENCES categories(id) ON DELETE RESTRICT,
   -- NEW FOREIGN KEY: Link to the user (admin) who created the product
   user_id INTEGER REFERENCES users(id) ON DELETE SET NULL
 );
