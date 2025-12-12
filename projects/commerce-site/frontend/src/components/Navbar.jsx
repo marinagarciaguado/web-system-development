@@ -35,9 +35,8 @@ const Navbar = () => {
       <div className="navbar-auth">
         {isAuthenticated ? (
           <>
-            {/* Displaying the user's name/email is optional, but helpful */}
             <span className="user-greeting">
-              Hola, {user.email.split('@')[0]}
+              Hola, {user && user.email ? user.email.split('@')[0] : 'Usuario'}
             </span>
             <button 
               onClick={handleLogout} 
