@@ -1,63 +1,57 @@
 // src/pages/Home.jsx
 import React from 'react';
 import IngredientVisualMap from '../components/IngredientVisualMap'; 
-// Import image placeholders for the new staggered layout
+import spanishPatioImage from '../assets/spanish_patio.png'; 
 import freshIngredientsImage from '../assets/fresh_ingredients.png';
-import modernFactoryImage from '../assets/modern_factory.png';
 
 
 const Home = () => {
   return (
     <div className="home-container">
+    
       {/* -------------------- SECTION 1: HERO - FRESHNESS & WOOD BACKGROUND -------------------- */}
       <section className="home-section freshness-banner initial-wood-section">
-          <h2 className="hero-title">EL MÁS FRESCO DE LOS FRESCOS</h2>
-          <p className="hero-subtitle"> {/* ADDED CLASS HERE */}
-              Tenemos el producto más fresco del mercado, sin aditivos ni químicos. 
-              No realizamos ningún proceso químico en la elaboración y/o en el envasado. 
-              Garantizamos un producto fresco con 15 días de caducidad, manteniendo la cadena de frío.
-          </p>
+        <h2 className="hero-title">EL MÁS FRESCO DE LOS FRESCOS</h2>
+        <p className="hero-subtitle">
+          Garantizamos la pureza en cada gota. Nuestro producto se elabora diariamente sin aditivos, químicos ni conservantes. Mantenemos la excelencia con un proceso 100% natural, garantizando frescura y sabor auténticos.
+        </p>
       </section>
 
       {/* -------------------- SECTION 2: LIGHT GREY BACKGROUND WRAPPER -------------------- */}
       <div className="scrolling-content-wrapper">
           
-          {/* -------------------- BLOCK A: BRAND HISTORY & PATIO VISUAL (Text Left, Image Right) -------------------- */}
+          {/* -------------------- BLOCK A: BRAND HISTORY & PATIO VISUAL -------------------- */}
           <section className="home-section brand-history two-column-layout">
             <div className="history-text content-block">
               <h3>NUESTRA MARCA, NUESTRA HISTORIA</h3>
               <p>
                 Capón de Galera fue creada en 2019 por dos jóvenes emprendedores sevillanos. Nuestra misión es buscar la excelencia en el sabor y respetar la receta original del gazpacho y el salmorejo.
-                Nuestros valores residen en el producto fiel a la receta original, la agricultura de proximidad (KM0), y un sabor inigualable.
-              </p>
-              <br></br>
-              <p>
-                Compromiso: El gazpacho y el salmorejo son el máximo exponente de la agricultura ecológica y producto sostenible.
+                Nuestros valores residen en el producto fiel a la receta original, la agricultura de proximidad (KM0), y un sabor inigualable. El gazpacho y el salmorejo son el máximo exponente de la agricultura ecológica y producto sostenible.
               </p>
             </div>
-            {/* Placeholder for the Patio Image (right column) */}
+            {/* Placeholder for the Spanish Patio Image */}
             <div className="history-image content-block">
-                <img src={modernFactoryImage} alt="Patio Interior" style={{maxWidth: '100%', borderRadius: '0px'}} />
+                <img src={spanishPatioImage} alt="Patio andaluz, nuestra inspiración" />
             </div>
           </section>
           
           <hr className="section-divider" />
 
-          {/* -------------------- BLOCK B: INGREDIENTS & PRODUCT VISUAL (Image Left, Text Right) -------------------- */}
+          {/* -------------------- BLOCK B: INGREDIENTS & PRODUCT VISUAL -------------------- */}
           <section className="home-section ingredients-section two-column-layout reverse-columns">
-            {/* Image Placeholder for Fresh Ingredients */}
+            {/* Image Placeholder for Fresh Ingredients  */}
             <div className="history-image content-block">
-                {/* Image Placeholder - Fresh Vegetables */}
-                <img src={freshIngredientsImage} alt="Verduras frescas para gazpacho" style={{maxWidth: '100%', borderRadius: '0px'}} />
+                <img src={freshIngredientsImage} alt="Verduras frescas de proximidad" />
             </div>
             
             <div className="history-text content-block">
                 <h3>LA ESENCIA DEL SABOR ANDALUZ</h3>
                 <p className="subtitle">
-                    Descubre la pureza de nuestra gama de productos. Utilizamos ingredientes 100% naturales, frescos y de proximidad, garantizando la trazabilidad.
+                    Descubre la pureza en nuestra gama de productos. Cada botella es un tributo a la frescura, desde nuestros pilares, el Gazpacho y Salmorejo, hasta nuestras exclusivas Cremas Frescas (Zanahoria con Manzana, Calabacín, Vichyssoise).
                 </p>
+                <br></br>
                 <p>
-                    Nuestros pilares: Gazpacho y Salmorejo (sin pan en la versión de Gazpacho), y nuestras Cremas Frescas Veganas, Sin Gluten, y Sin Azúcares Añadidos (Zanahoria con Manzana, Calabacín, Vichyssoise, etc.).
+                    Nuestros valores nutricionales: Productos veganos, sin gluten, sin azúcares añadidos, y 100% naturales.
                 </p>
                 <br></br>
                 {/* Visual Ingredient Map Component */}
@@ -67,21 +61,20 @@ const Home = () => {
           
           <hr className="section-divider" />
 
-          {/* -------------------- BLOCK C: PRODUCTION & SUSTAINABILITY (Text Left, Image Right) -------------------- */}
+          {/* -------------------- BLOCK C: PRODUCTION & SUSTAINABILITY -------------------- */}
           <section className="home-section sustainability-section two-column-layout">
              <div className="history-text content-block">
                 <h3>PRODUCCIÓN SOSTENIBLE Y TRAZABILIDAD</h3>
                 <p>
-                    Contamos con una moderna planta de producción desde 2020, dotada de la mejor tecnología para el procesado y envasado de alimentos 100% vegetales.
+                    Contamos con una moderna planta de producción desde 2020, dotada de la mejor tecnología disponible para el procesado y envasado de alimentos 100% vegetales.
                 </p>
                 <p>
-                    Reducimos nuestra huella de carbono en un 30% gracias a acciones llevadas a cabo (como el cambio de packaging). Como acción innovadora, pondremos a disposición de los clientes un código QR para ver la procedencia y fotografías de las verduras que están consumiendo.
+                    Reducimos nuestra huella de carbono en un 30% gracias a acciones como el cambio de packaging. Como acción innovadora, pondremos a disposición de los clientes un código QR para ver la procedencia y fotografías de las verduras que están consumiendo. Nuestro mejor argumento de venta es dejar que las verduras hablen por nosotros.
                 </p>
             </div>
+            {/* Placeholder for the Modern Factory Image */}
             
           </section>
-          
-          {/* Ensures there is space between the last content block and the footer */}
           <div style={{ paddingBottom: '80px' }}></div> 
       </div>
     </div>

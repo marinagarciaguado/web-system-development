@@ -1,289 +1,259 @@
-/* --- Global Vite/React Reset Styles --- */
+/*
+ * index.css - Estilos Globales para Capón de Galera
+ * Estética: Frescura, Tradición Andaluza, Calidad.
+ */
+
+/* =========================================================================
+ * 1. VARIABLES CSS (Paleta de Colores y Tipografía)
+ * =========================================================================
+ */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* Colores de la Marca (Tomate, Aceite de Oliva, Sol) */
+  --color-primary-red: #B71C1C;    /* Rojo Tomate Fresco (Principal) */
+  --color-secondary-green: #6B8E23; /* Verde Oliva (Acento/Naturalidad) */
+  --color-accent-yellow: #FFC107;  /* Amarillo Sol (Botones/CTAs) */
+  
+  /* Colores de Fondo y Texto */
+  --color-background-cream: #FAF0E6; /* Fondo Crema Suave / Rústico */
+  --color-background-white: #ffffff; /* Fondo blanco para secciones de contenido */
+  --color-text-dark: #263238;      /* Texto principal, gris oscuro */
+  --color-text-light: #ffffff;     /* Texto en fondos oscuros */
+  --color-shadow-light: rgba(0, 0, 0, 0.1);
+  --color-shadow-strong: rgba(0, 0, 0, 0.3);
 
-  color-scheme: light dark;
-  color: #213547;
-  background-color: #ffffff;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  /* Global variables for theme colors */
-  --primary-color: #f7a31b; /* Capón de Galera Accent/Yellow */
-  --primary-hover: #e09214; 
-  --text-main: #1f2937;
-  --bg-light: #f4f4f9; /* Light grey background color */
-  --danger: #ef4444;
+  /* Tipografía (Asegúrate de importar Playfair Display y Montserrat) */
+  --font-serif: 'Playfair Display', Georgia, serif; 
+  --font-sans: 'Montserrat', Arial, sans-serif;   
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* =========================================================================
+ * 2. ESTILOS GLOBALES
+ * =========================================================================
+ */
 
-html, body, #root {
-  min-height: 100vh;
-}
-
-/* --- Body / Wood Background --- */
+/* Reinicio de Margen y Fondo General */
 body {
   margin: 0;
   min-height: 100vh;
-  background-image: url('/woodBackground.jpg'); 
+  /* Fondo general crema para calidez */
+  background-color: var(--color-background-cream); 
+  font-family: var(--font-sans); 
+  color: var(--color-text-dark);
+  line-height: 1.6;
+}
+
+/* Estilos de Títulos */
+h1, h2, h3 {
+  /* Usamos la serif para dar un toque de calidad/gourmet */
+  font-family: var(--font-serif); 
+  font-weight: 700;
+  color: var(--color-primary-red); /* Color distintivo */
+  margin-top: 0;
+}
+
+/* Contenedor Principal (Main Content) */
+main {
+  padding: 0; 
+  min-height: 80vh;
+  /* El contenido dentro de main resaltará sobre el fondo crema de body */
+  background-color: var(--color-background-white); 
+}
+
+/* Contenedores de Layout */
+.home-container, .admin-crud-container, .container {
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 20px;
+}
+
+/* =========================================================================
+ * 3. SECCIÓN HERO (initial-wood-section -> FRESHNESS HERO)
+ * =========================================================================
+ */
+.initial-wood-section {
+  /* La imagen de fondo debe estar en public/ o ajusta la ruta */
+  background-image: url('/fresh_ingredients_background.jpg'); 
   background-repeat: no-repeat;
   background-size: cover; 
-  background-position: center top; 
-  background-attachment: fixed; 
-  background-color: #f8f8f8; 
+  background-position: center 30%; 
   
-  /* 4. Font Fix: Set the Georgia font */
-  font-family: 'Georgia', serif; 
-  color: #333;
+  color: var(--color-text-light); 
+  min-height: 550px; 
+  padding-top: 100px;
+  padding-bottom: 100px;
+  text-align: center;
+  position: relative;
+  overflow: hidden; /* Asegura que el after/before no se salga */
 }
 
-h1, h2, h3 {
-    font-family: 'Georgia', serif; 
-    font-weight: 700;
+/* Overlay para Legibilidad del Texto */
+.initial-wood-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Oscurecimiento sutil y ligero toque de color de marca */
+    background: rgba(0, 0, 0, 0.2); 
+    z-index: 1; 
 }
 
-/* --- Navbar Logo Fix (Item 2) --- */
-.brand-logo-img {
-    width: auto;
-}
-
-/* --- Layout and Structural Styles --- */
-
-main {
-    padding: 0; 
-    min-height: 80vh;
-    background-color: white; 
-}
-
-.home-container {
-    max-width: 1200px; 
-    margin: 0 auto; 
-    padding: 0; /* Remove padding from the outer container */
-}
-
-/* 1. Wood Section Styling (Item 1, 7) */
-.initial-wood-section {
-    /* CRITICAL FIX: This section now applies the wood background directly */
-    background-image: url('/woodBackground.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center top;
-    
-    color: white; 
-    min-height: 500px; 
-    padding-top: 100px;
-    padding-bottom: 100px;
+/* Asegurar que el contenido del Hero esté encima del overlay */
+.initial-wood-section > *,
+.initial-wood-section h2, .initial-wood-section p {
+  position: relative; 
+  z-index: 2;
 }
 
 .initial-wood-section h2, .initial-wood-section p {
-    color: white; 
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5); 
+  color: var(--color-text-light); 
+  text-shadow: 1px 1px 4px var(--color-shadow-strong); 
 }
 
-/* src/index.css (Add these new rules) */
-
-/* Styling for the main heading in the hero section */
 .initial-wood-section .hero-title {
-    font-size: 3.5rem; /* Make it large and dominating */
-    font-weight: 900; /* Extra bold */
-    text-transform: uppercase;
-    margin-bottom: 20px;
+  font-size: 4rem; 
+  font-weight: 900; 
+  letter-spacing: 0.1em; 
+  text-transform: uppercase;
+  margin-bottom: 20px;
 }
 
-/* Styling for the supporting paragraph (the "younger" text) */
 .initial-wood-section .hero-subtitle {
-    font-size: 1.2rem; /* Substantially larger than standard text */
-    font-weight: 400; /* Keep it lighter than the title */
-    line-height: 1.4;
-    max-width: 700px; /* Constrain the width for better readability in a block */
-    margin: 0 auto; /* Center the text block */
-    padding: 0 10px;
-    
-    /* Add subtle background for contrast over the wood */
-    background-color: rgba(218, 215, 198, 0.404); 
-    border-radius: 5px;
-    padding: 15px;
+  font-size: 1.6rem; 
+  font-weight: 400; 
+  line-height: 1.4;
+  max-width: 800px; 
+  margin: 0 auto; 
+  padding: 15px 30px;
+  /* Destacar el subtítulo con el color principal de la marca */
+  background-color: rgba(183, 28, 28, 0.7); /* Rojo Tomate con opacidad */
+  border-radius: 8px; 
+  border: 2px solid var(--color-text-light); 
 }
 
-/* 2. Light Grey Section Wrapper */
+
+/* =========================================================================
+ * 4. SECCIONES DE CONTENIDO Y LAYOUTS
+ * =========================================================================
+ */
+
 .scrolling-content-wrapper {
-    background-color: var(--bg-light); /* Light grey background */
-    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2); 
-    /* Padding is applied inside the wrapper for the content */
+  background-color: var(--color-background-white);
+  /* Sombra sutil para separar del Hero */
+  box-shadow: 0 -2px 5px var(--color-shadow-light); 
+  padding-top: 40px; 
+  padding-left: 20px; 
+  padding-right: 20px; 
 }
 
-/* General Section Spacing (applied to sections inside the wrappers) */
 .home-container .home-section {
-    padding: 60px 20px; /* Re-apply horizontal padding */
-    border-top: 1px solid #eee; 
-    margin-bottom: 0;
+  padding: 80px 20px; 
+  border-top: none; 
 }
 
-/* Two-Column Layout for History Section */
+/* Layout de Dos Columnas (Historia / Ingredientes) */
 .two-column-layout {
-    display: flex;
-    align-items: center;
-    gap: 80px; 
-}
-
-/* 5. Indent Fix */
-.history-text p {
-    line-height: 1.8; /* Improves readability */
-    padding-right: 20px;
+  display: flex;
+  gap: 60px; 
+  align-items: flex-start;
+  margin-bottom: 40px;
 }
 
 .history-text {
-    flex: 1; 
-    max-width: 50%; 
+  flex: 1; 
+  max-width: 50%; 
+}
+
+.history-text h2 {
+    margin-top: 0;
+    /* Línea decorativa para títulos de sección */
+    border-bottom: 2px solid var(--color-secondary-green); 
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.history-text p {
+  line-height: 1.8; 
 }
 
 .history-image {
-    flex: 1; 
-    min-height: 400px; 
-    background-color: #f0f0f0; 
-    border-radius: 10px;
+  flex: 1; 
+  min-height: 400px; 
+  background-color: var(--color-background-cream); 
+  border-radius: 10px;
+  /* Sombra de tarjeta más elegante y suave */
+  box-shadow: 0 8px 20px var(--color-shadow-light); 
+  overflow: hidden; 
 }
 
-.section-divider {
-    border: 0;
-    border-top: 1px solid #ddd;
-    margin: 40px 0;
+.history-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease-in-out; 
 }
 
-/* Spacing to prevent clash with Footer */
-.home-container {
-    padding-bottom: 100px; 
+.history-image img:hover {
+    transform: scale(1.03); /* Efecto de zoom sutil al pasar el ratón */
 }
 
-/* Ensure footer has padding */
-footer {
-    padding: 20px 40px; 
-}
-
-
-/* --- Admin CRUD & General Form/Table Styles (Keep these the same) --- */
-
-.admin-crud-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group label {
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.form-group .full-width {
-    grid-column: 1 / -1;
-}
-
-.error-message {
-    color: var(--danger);
-    font-size: 0.85rem;
-    margin-top: 5px;
-}
-
-/* --- Button Styles --- */
-.btn {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.2s;
-    margin-right: 10px;
-}
-
+/* Estilo para botones primarios (usar la clase en el HTML) */
 .btn-primary {
-    background-color: var(--primary-color); 
-    color: white;
+  display: inline-block;
+  background-color: var(--color-accent-yellow);
+  color: var(--color-text-light);
+  font-weight: bold;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
 }
 
-.btn-secondary {
-    background-color: #ccc;
-    color: var(--text-main);
+.btn-primary:hover {
+  background-color: #FFA000; /* Tono más oscuro de amarillo para hover */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px var(--color-shadow-light);
 }
 
-.btn-edit {
-    background-color: #2196F3;
-    color: white;
-}
 
-.btn-delete {
-    background-color: var(--danger);
-    color: white;
-}
+/* =========================================================================
+ * 5. MEDIA QUERIES (Responsiveness)
+ * =========================================================================
+ */
 
-.alert {
-    padding: 15px;
-    border-radius: 4px;
-    margin-bottom: 20px;
-}
-
-.alert-error {
-    background-color: #fdd;
-    border: 1px solid #f00;
-    color: #f00;
-}
-
-/* --- Table Styles --- */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #eee;
-}
-
-tr:hover {
-    background-color: #f9f9f9;
+@media (max-width: 1024px) {
+    .initial-wood-section .hero-title {
+        font-size: 3rem; 
+    }
 }
 
 input, select, textarea {
   background-color: #ffffff !important;
   color: #1f2937 !important;
+}
+
+@media (max-width: 768px) {
+  /* Layout de dos columnas a una sola columna */
+  .two-column-layout {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .history-text {
+    max-width: 100%;
+    order: 2; /* Pone el texto debajo de la imagen en móvil */
+  }
+  .history-image {
+    order: 1; /* Pone la imagen arriba del texto en móvil */
+    min-height: 300px;
+  }
+  .initial-wood-section .hero-title {
+      font-size: 2.5rem; 
+  }
+  .initial-wood-section .hero-subtitle {
+      font-size: 1.2rem;
+      padding: 10px 15px;
+  }
 }
