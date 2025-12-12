@@ -8,32 +8,34 @@
     padding: 8px 40px; 
     background-color: white; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    height: 60px; 
-    z-index: 10;
+    height: 70px; /* Increased height slightly for better logo fit */
+    z-index: 999;
     position: sticky;
     top: 0;
 }
 
-/* 2. Logo Sizing Fix */
+/* 2. Logo Sizing Fix (Item 2) */
 .brand-logo-img {
-    height: 50px; /* CRITICAL FIX: Increased logo size */
+    height: 55px; /* CRITICAL FIX: Ensures logo is visible and proportional */
     width: auto;
+    object-fit: contain;
 }
 
 /* 3. Navigation Links (Removing the BOX, Increasing Spacing) */
 .navbar-links {
-    background: none !important; /* CRITICAL FIX: Removes the unwanted box background */
+    background: none !important; 
     display: flex;
     align-items: center;
 }
 
 .navbar-links a {
-    margin: 0 20px; /* CRITICAL FIX: Increased horizontal spacing */
+    margin: 0 25px; /* CRITICAL FIX: Increased horizontal spacing (Item 3) */
     text-decoration: none;
     color: #555;
     font-weight: 500;
     transition: color 0.2s;
     padding: 5px 0; 
+    font-size: 0.95rem; /* Make the font slightly smaller for elegance */
 }
 
 .navbar-links a:hover {

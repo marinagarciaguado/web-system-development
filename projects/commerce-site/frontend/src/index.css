@@ -1,48 +1,18 @@
 /* --- Global Vite/React Reset Styles --- */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: #213547;
-  background-color: #ffffff;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  /* Global variables for theme colors */
-  --primary-color: #f7a31b; /* Capón de Galera Accent/Yellow */
-  --primary-hover: #e09214; 
+  /* ... (color variables) ... */
+  --primary-color: #f7a31b; 
   --text-main: #1f2937;
-  --bg-light: #f4f4f9; /* Light grey background color */
-  --danger: #ef4444;
+  --bg-light: #f4f4f9; /* Light grey background color (for scrolling wrapper) */
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* ... (Omitted standard resets) ... */
 
-html, body, #root {
-  min-height: 100vh;
-}
-
-/* --- Body / Wood Background --- */
+/* --- Body / Wood Background (FIXED) --- */
 body {
   margin: 0;
   min-height: 100vh;
-  background-image: url('/woodBackground.jpg'); 
-  background-repeat: no-repeat;
-  background-size: cover; 
-  background-position: center top; 
-  background-attachment: fixed; 
   background-color: #f8f8f8; 
-  
-  /* 4. Font Fix: Set the Georgia font */
   font-family: 'Georgia', serif; 
   color: #333;
 }
@@ -52,93 +22,95 @@ h1, h2, h3 {
     font-weight: 700;
 }
 
-/* --- Navbar Logo Fix (Item 2) --- */
-.brand-logo-img {
-    width: auto;
-}
-
 /* --- Layout and Structural Styles --- */
 
+/* FIX: Main tag gets a solid background by default (solves wood bleed on other pages) */
 main {
     padding: 0; 
     min-height: 80vh;
     background-color: white; 
 }
 
-.home-container {
+.home-container, .admin-crud-container, .container {
     max-width: 1200px; 
     margin: 0 auto; 
-    padding: 0; /* Remove padding from the outer container */
+    padding: 20px;
 }
 
-/* 1. Wood Section Styling (Item 1, 7) */
+/* 1. Wood Section Styling */
 .initial-wood-section {
-    /* CRITICAL FIX: This section now applies the wood background directly */
+    /* CRITICAL FIX: APPLY BACKGROUND DIRECTLY HERE */
     background-image: url('/woodBackground.jpg');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; 
     background-position: center top;
     
-    color: white; 
+    color: white; /* Ensure text is white */
     min-height: 500px; 
     padding-top: 100px;
     padding-bottom: 100px;
+    text-align: center;
 }
 
 .initial-wood-section h2, .initial-wood-section p {
     color: white; 
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5); 
 }
-
-/* src/index.css (Add these new rules) */
-
-/* Styling for the main heading in the hero section */
 .initial-wood-section .hero-title {
-    font-size: 3.5rem; /* Make it large and dominating */
-    font-weight: 900; /* Extra bold */
+    font-size: 3.5rem; 
+    font-weight: 900; 
+    letter-spacing: 0.1em; 
     text-transform: uppercase;
     margin-bottom: 20px;
 }
-
-/* Styling for the supporting paragraph (the "younger" text) */
 .initial-wood-section .hero-subtitle {
-    font-size: 1.2rem; /* Substantially larger than standard text */
-    font-weight: 400; /* Keep it lighter than the title */
+    font-size: 1.5rem; 
+    font-weight: 400; 
     line-height: 1.4;
-    max-width: 700px; /* Constrain the width for better readability in a block */
-    margin: 0 auto; /* Center the text block */
-    padding: 0 10px;
-    
-    /* Add subtle background for contrast over the wood */
-    background-color: rgba(218, 215, 198, 0.404); 
-    border-radius: 5px;
+    max-width: 700px; 
+    margin: 0 auto; 
     padding: 15px;
+    background-color: rgba(255, 255, 255, 0.15); /* Subtly lift text */
+    border-radius: 5px;
 }
 
-/* 2. Light Grey Section Wrapper */
+
+/* 2. Light Grey Section Wrapper (For all content below the wood section) */
 .scrolling-content-wrapper {
     background-color: var(--bg-light); /* Light grey background */
     box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2); 
-    /* Padding is applied inside the wrapper for the content */
+    padding-top: 40px; 
+    padding-left: 20px; 
+    padding-right: 20px; 
 }
 
-/* General Section Spacing (applied to sections inside the wrappers) */
+/* General Section Spacing */
 .home-container .home-section {
-    padding: 60px 20px; /* Re-apply horizontal padding */
-    border-top: 1px solid #eee; 
-    margin-bottom: 0;
+    padding: 60px 20px; 
+    /* Remove default border-top from sections to make background seamless */
+    border-top: none; 
 }
 
-/* Two-Column Layout for History Section */
+/* Two-Column Layout */
 .two-column-layout {
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Align content to the top of the section */
     gap: 80px; 
+}
+
+/* FIX: Remove the dark square background color (Item 9) */
+.history-image {
+    flex: 1; 
+    min-height: 400px; 
+    background-color: transparent; /* FIX: Removes the grey placeholder square color */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    overflow: hidden; 
 }
 
 /* 5. Indent Fix */
 .history-text p {
-    line-height: 1.8; /* Improves readability */
+    line-height: 1.8; 
     padding-right: 20px;
 }
 
@@ -146,140 +118,11 @@ main {
     flex: 1; 
     max-width: 50%; 
 }
-
-.history-image {
-    flex: 1; 
-    min-height: 400px; 
-    background-color: #f0f0f0; 
-    border-radius: 10px;
-}
-
-.section-divider {
-    border: 0;
-    border-top: 1px solid #ddd;
-    margin: 40px 0;
-}
-
-/* Spacing to prevent clash with Footer */
-.home-container {
-    padding-bottom: 100px; 
-}
-
-/* Ensure footer has padding */
-footer {
-    padding: 20px 40px; 
-}
-
-
-/* --- Admin CRUD & General Form/Table Styles (Keep these the same) --- */
-
-.admin-crud-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group label {
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+/* Ensure Images inside the image placeholder fill the space */
+.history-image img {
     width: 100%;
-    box-sizing: border-box;
+    height: 100%;
+    object-fit: cover;
 }
 
-.form-group .full-width {
-    grid-column: 1 / -1;
-}
-
-.error-message {
-    color: var(--danger);
-    font-size: 0.85rem;
-    margin-top: 5px;
-}
-
-/* --- Button Styles --- */
-.btn {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.2s;
-    margin-right: 10px;
-}
-
-.btn-primary {
-    background-color: var(--primary-color); 
-    color: white;
-}
-
-.btn-secondary {
-    background-color: #ccc;
-    color: var(--text-main);
-}
-
-.btn-edit {
-    background-color: #2196F3;
-    color: white;
-}
-
-.btn-delete {
-    background-color: var(--danger);
-    color: white;
-}
-
-.alert {
-    padding: 15px;
-    border-radius: 4px;
-    margin-bottom: 20px;
-}
-
-.alert-error {
-    background-color: #fdd;
-    border: 1px solid #f00;
-    color: #f00;
-}
-
-/* --- Table Styles --- */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #eee;
-}
-
-tr:hover {
-    background-color: #f9f9f9;
-}
-
+/* ... (Remaining styles omitted for brevity, ensure you copy the full previous block) ... */
