@@ -177,6 +177,11 @@ main {
   }
 }
 
+input, select, textarea {
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
+}
+
 @media (max-width: 768px) {
   .two-column-layout {
     flex-direction: column;

@@ -157,4 +157,34 @@
   .contact-info-card {
     width: 100%;
   }
+<<<<<<< HEAD
 }
+=======
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px 20px;
+  background-color: var(--primary-color, #f7a31b); 
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 15px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.submit-btn:hover {
+  background-color: var(--primary-hover, #e09214); 
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+>>>>>>> 557be5287110d578e522aad64ae49a03c1272b70
