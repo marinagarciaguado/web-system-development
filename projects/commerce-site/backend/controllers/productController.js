@@ -49,7 +49,10 @@ export const createProduct = asyncHandler(async (req, res) => {
   
   // El modelo ahora solo recibe productData sin category_id
   const userId = req.user.id; 
-  
+  console.log('--- CREATING PRODUCT ---');
+  console.log('Product Data:', productData);
+  console.log('User ID from Token:', userId); // << AÑADE ESTA LINEA
+  console.log('------------------------');
   const newProduct = await productModel.createProduct(productData, userId);
   
   res.status(201).json(newProduct);
