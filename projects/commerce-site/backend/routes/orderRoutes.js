@@ -1,17 +1,28 @@
 // backend/routes/orderRoutes.js
 import { Router } from 'express';
+import { 
+  getOrders, 
+  getOrderById, 
+  createOrder, 
+  updateOrderStatus 
+} from '../controllers/orderController.js';
 import { protect, admin } from '../middlewares/authMiddleware.js';
-import { createOrder, getOrders, getOrder } from '../controllers/orderController.js';
 
 const router = Router();
 
-// Place an order (must be logged in)
-router.post('/', protect, createOrder);
+// Routes for /api/orders
 
-// Get orders (admin sees all, user sees their own)
-router.get('/', protect, getOrders);
+// Client/Admin Read & Client Create
+router.route('/')
+  .get(protect, getOrders)      // GET /api/orders (Client: Mine, Admin: All)
+  .post(protect, createOrder);  // POST /api/orders (Client: Place new order)
 
-// Get a single order
-router.get('/:id', protect, getOrder);
+// Client/Admin Read One
+router.route('/:id')
+  .get(protect, getOrderById);  // GET /api/orders/:id (Client: My order, Admin: Any order)
+
+// Admin Update Status
+router.route('/:id/status')
+  .put(protect, admin, updateOrderStatus); // PUT /api/orders/:id/status (Admin: Update order status)
 
 export default router;
