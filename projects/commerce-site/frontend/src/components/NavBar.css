@@ -1,49 +1,49 @@
-/* src/components/Navbar.css */
+/* src/components/Navbar.css (FINAL CLEANUP) */
+
+/* 1. Main Bar Container */
 .navbar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 40px; /* Thinner padding */
+    padding: 8px 40px; 
     background-color: white; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    height: 60px; /* Explicit height */
+    height: 60px; /* Thinner bar */
     z-index: 10;
-    position: sticky; /* Keep the navbar visible when scrolling */
+    position: sticky;
     top: 0;
 }
 
-/* Logo Styling */
+/* 2. Logo Sizing Fix */
 .brand-logo-img {
-    height: 40px; /* Ensures the logo fits the 60px bar height */
+    height: 40px; /* Ensures the logo fits perfectly in the 60px bar */
     width: auto;
 }
 
-.navbar-logo a {
-    /* Ensure the link around the logo has no weird styling */
-    text-decoration: none;
-}
-
-/* Navigation Links (Removing unwanted box/background) */
+/* 3. Navigation Links (Removing the BOX) */
 .navbar-links {
-    background: none; /* Crucial: ensures no background box */
+    /* REMOVED: Background or border styles that might create the box effect */
+    background: none !important;
     display: flex;
     align-items: center;
+    /* Ensure links flow naturally */
 }
 
+/* 4. Individual Links */
 .navbar-links a {
     margin: 0 10px;
     text-decoration: none;
     color: #555;
     font-weight: 500;
     transition: color 0.2s;
-    padding: 5px 0; /* Ensures consistent vertical space for links */
+    padding: 5px 0; 
 }
 
 .navbar-links a:hover {
     color: var(--primary-color); 
 }
 
-/* Right-Side Authentication Button */
+/* 5. Login/Session Button (Keep dark for contrast) */
 .navbar-auth .btn-primary {
     background-color: #333; 
     color: white;

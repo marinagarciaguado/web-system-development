@@ -1,33 +1,4 @@
 /* --- Global Vite/React Reset Styles --- */
-
-/* ... (existing global styles) ... */
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  
-  /* Apply the wood texture background */
-  background-image: url('/woodBackground.jpg'); /* References the file in the PUBLIC folder */
-  background-repeat: repeat;
-  background-attachment: fixed; /* Optional: Makes the texture stay put when scrolling */
-  background-color: #f8f8f8; 
-  
-  font-family: 'Georgia', serif; 
-  color: #333;
-}
-
-/* ... (rest of the file content) ... */
-
-/* Ensure Logo displays correctly */
-.brand-logo-img {
-    height: 150px; /* Adjust height as needed */
-    width: auto;
-}
-
-/* Override button font for consistency */
-button, input, select, textarea {
-    font-family: inherit;
-}
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -61,11 +32,21 @@ html, body, #root {
   min-height: 100vh;
 }
 
+/* --- Body / Wood Background Styles --- */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f9; 
-  color: var(--text-main);
+  min-height: 100vh;
+  
+  /* Apply the wood texture background */
+  background-image: url('/woodBackground.jpg'); 
+  background-repeat: no-repeat; /* CRITICAL FIX: No longer tiling */
+  background-size: cover; /* CRITICAL FIX: Ensures the image fills the viewport */
+  background-position: center top; 
+  background-attachment: fixed; 
+  background-color: #f8f8f8; 
+  
+  font-family: 'Georgia', serif; /* Consistent brand font */
+  color: #333;
 }
 
 a {
@@ -77,21 +58,54 @@ a:hover {
   color: #535bf2;
 }
 
+/* Override input/button font for consistency */
+button, input, select, textarea {
+    font-family: inherit;
+}
+
+/* --- Navbar Logo Fix --- */
+.brand-logo-img {
+    height: 40px; /* CRITICAL FIX: Ensures logo fits the thin navbar */
+    width: auto;
+}
+
+
 /* --- Layout and Structural Styles --- */
 
 main {
-    padding: 0; /* Remove default padding for full layout control */
+    padding: 0; 
     min-height: 80vh;
 }
 
 /* This is the key content constraint for Home/Admin/Products pages */
 .home-container, .admin-crud-container, .container {
     max-width: 1200px; 
-    margin: 0 auto; /* Centers the content */
+    margin: 0 auto; 
     padding: 20px;
 }
 
 /* Home Page Specific Layout */
+
+/* 1. Wood Section Styling */
+.initial-wood-section {
+    background: none; /* Make sure this section is transparent to show the body's background */
+    color: white; /* CRITICAL FIX: Makes text readable over dark wood */
+    min-height: 500px; 
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.initial-wood-section h2, .initial-wood-section p {
+    color: white; /* Ensure text remains white even if inherited color changes */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* Optional: Adds a drop shadow for readability */
+}
+
+/* 2. Light Grey Section Wrapper */
+.scrolling-content-wrapper {
+    background-color: #f4f4f9; /* Light grey background as requested */
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2); /* Lift effect for transition */
+    padding-top: 40px; /* Add some padding inside the wrapper */
+}
 
 /* General Section Spacing */
 .home-container .home-section {
@@ -109,12 +123,11 @@ main {
 
 .history-text {
     flex: 1; 
-    max-width: 50%; /* Constrains the text width for better readability */
+    max-width: 50%; 
 }
 
 .history-image {
     flex: 1; 
-    /* Placeholder styling for the image block */
     min-height: 400px; 
     background-color: #f0f0f0; 
     border-radius: 10px;
@@ -131,7 +144,6 @@ main {
     list-style: none;
     padding-left: 0;
     margin-top: 20px;
-    /* Example: Arrange ingredients in columns */
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
@@ -139,8 +151,7 @@ main {
 
 .ingredients-section ul li {
     margin-bottom: 5px;
-    padding-left: 1.5em; /* Creates the indentation/visual space */
-    /* Add a visual bullet point */
+    padding-left: 1.5em; 
     position: relative;
 }
 
@@ -154,10 +165,10 @@ main {
 }
 
 /* Spacing to prevent clash with Footer */
-/* This ensures content doesn't touch the bottom of the viewport/footer */
 .home-container {
     padding-bottom: 100px; 
 }
+
 /* Ensure footer has padding */
 footer {
     padding: 20px 40px; 
@@ -274,21 +285,4 @@ th {
 
 tr:hover {
     background-color: #f9f9f9;
-}
-
-/* src/index.css (Add to Layout Styles section) */
-
-/* The element that changes the background */
-.scrolling-content-wrapper {
-    background-color: white; /* Use white or #f4f4f9 light grey */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Adds a lift effect */
-}
-
-/* Ensure the first section flows naturally over the body background */
-.initial-wood-section {
-    background: none; /* Make sure this section is transparent */
-    color: white; /* Adjust text color for visibility over dark wood */
-    min-height: 400px; /* Give it some vertical height */
-    padding-top: 100px;
-    padding-bottom: 100px;
 }
