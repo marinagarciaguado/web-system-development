@@ -1,13 +1,14 @@
+// backend/models/productModel.js
 import pool from '../db/pool.js';
 
 // GET: Fetch all products (Public endpoint)
 export const getAllProducts = async () => {
-    // Joins are used to enrich the data with the category name (as requested)
     const query = `
         SELECT 
-            p.id, p.name, p.description, p.price, p.image_url, 
+            p.id, p.name, p.description, p.price, p.image_url, p.stock,  -- ADDED p.stock
             c.name as category_name, 
-            u.username as created_by 
+            u.email as created_by_email,  -- FIXED: Changed u.username to u.email
+            u.full_name as created_by_name
         FROM products p
         LEFT JOIN categories c ON p.category_id = c.id
         LEFT JOIN users u ON p.user_id = u.id
@@ -22,9 +23,10 @@ export const getAllProducts = async () => {
 export const getProductById = async (id) => {
     const query = `
         SELECT 
-            p.id, p.name, p.description, p.price, p.image_url, 
+            p.id, p.name, p.description, p.price, p.image_url, p.stock,  -- ADDED p.stock
             c.name as category_name, 
-            u.username as created_by 
+            u.email as created_by_email,  -- FIXED: Changed u.username to u.email
+            u.full_name as created_by_name
         FROM products p
         LEFT JOIN categories c ON p.category_id = c.id
         LEFT JOIN users u ON p.user_id = u.id
@@ -37,20 +39,18 @@ export const getProductById = async (id) => {
 
 // POST: Create new product (Protected endpoint)
 export const createProduct = async (productData, userId) => {
-    // UPDATED: Destructure stock
-    const { name, description, price, category_id, image_url, stock } = productData; 
+    // FIXED: Destructure stock (which was added to Zod schema previously)
+    const { name, description, price, category_id, image_url, stock } = productData;
 
-    // UPDATED: Insert stock value ($5) and shift image_url ($6) and userId ($7)
     const query = `
-        INSERT INTO products (name, description, price, stock, category_id, image_url, user_id)
+        INSERT INTO products (name, description, price, category_id, image_url, user_id, stock)
         VALUES ($1, $2, $3, $4, $5, $6, $7)
-        RETURNING id, name, price, stock, image_url
+        RETURNING id, name, price, stock, image_url -- ADDED stock to return
     `;
 
-    // UPDATED: Pass stock into the values array ($4)
     const result = await pool.query(
-      query, 
-      [name, description, price, stock, category_id, image_url, userId]
+        query, 
+        [name, description, price, category_id, image_url, userId, stock] // ADDED stock value
     );
     
     return result.rows[0];
@@ -65,14 +65,19 @@ export const deleteProduct = async (id) => {
 
 // PUT/PATCH: Update a product (Protected endpoint)
 export const updateProduct = async (id, productData) => {
-    const { name, description, price, category_id, image_url } = productData;
+    // FIXED: Destructure stock for update
+    const { name, description, price, category_id, image_url, stock } = productData; 
+    
     const query = `
         UPDATE products
-        SET name = $1, description = $2, price = $3, category_id = $4, image_url = $5
-        WHERE id = $6
-        RETURNING id, name, price
+        SET name = $1, description = $2, price = $3, category_id = $4, image_url = $5, stock = $6
+        WHERE id = $7
+        RETURNING id, name, price, stock -- ADDED stock to return
     `;
 
-    const result = await pool.query(query, [name, description, price, category_id, image_url, id]);
+    const result = await pool.query(
+        query, 
+        [name, description, price, category_id, image_url, stock, id] // ADDED stock value
+    );
     return result.rows[0];
 };
