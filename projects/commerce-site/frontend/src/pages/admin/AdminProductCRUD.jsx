@@ -10,12 +10,12 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001
 
 const AdminProductCRUD = () => {
   const [products, setProducts] = useState([]);
-  // [REMOVIDO] Se quita el estado categories
+  // [REMOVIDO] categories ya no se usa
   const [editingProduct, setEditingProduct] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Initial values for the form (category_id ya no es necesario)
+  // Initial values: category_id ya no es necesario
   const initialValues = {
     name: editingProduct?.name || '',
     description: editingProduct?.description || '',
@@ -38,11 +38,11 @@ const AdminProductCRUD = () => {
     }
   };
 
-  // [REMOVIDO] Se quita la funcion fetchCategories
+  // [REMOVIDO] fetchCategories ya no es necesario
   
   useEffect(() => {
     fetchProducts();
-    // [REMOVIDO] Se quita la llamada a fetchCategories
+    // [REMOVIDO] No se llama a fetchCategories
   }, []);
 
   // --- CRUD Handlers ---
@@ -50,7 +50,6 @@ const AdminProductCRUD = () => {
   const handleFormSubmit = async (values, { setSubmitting, resetForm }) => {
     setError(null);
     try {
-      // Nota: Zod transformará los campos price y stock a numeros antes de enviar
       if (editingProduct) {
         await axios.put(`${API_BASE_URL}/api/products/${editingProduct.id}`, values);
       } else {
@@ -111,21 +110,21 @@ const AdminProductCRUD = () => {
                   <ErrorMessage name="name" component="div" className="error-message" />
                 </div>
                 
-                {/* Price */}
+                {/* Price (CORREGIDO: type="text") */}
                 <div className="form-group">
                   <label htmlFor="price">Precio</label>
-                  <Field name="price" type="number" step="0.01" />
+                  <Field name="price" type="text" />
                   <ErrorMessage name="price" component="div" className="error-message" />
                 </div>
                 
-                {/* Stock */}
+                {/* Stock (CORREGIDO: type="text") */}
                 <div className="form-group">
                   <label htmlFor="stock">Stock</label>
-                  <Field name="stock" type="number" />
+                  <Field name="stock" type="text" />
                   <ErrorMessage name="stock" component="div" className="error-message" />
                 </div>
 
-                {/* [REMOVIDO] Se quita el campo Category ID (Dropdown Select) */}
+                {/* [REMOVIDO] Se quita el campo Category ID */}
                 
                 {/* Image URL */}
                 <div className="form-group full-width">
@@ -177,7 +176,7 @@ const AdminProductCRUD = () => {
               <th>Nombre</th>
               <th>Precio</th>
               <th>Stock</th>
-              {/* [REMOVIDO] Se quita la columna Categoría */}
+              {/* [REMOVIDO] Categoría */}
               <th>Acciones</th>
             </tr>
           </thead>
@@ -188,7 +187,7 @@ const AdminProductCRUD = () => {
                 <td>{product.name}</td>
                 <td>{product.price}€</td>
                 <td>{product.stock}</td>
-                {/* [REMOVIDO] Se quita el dato de Categoría */}
+                {/* [REMOVIDO] product.category_name */}
                 <td>
                   <button 
                     onClick={() => setEditingProduct(product)}
