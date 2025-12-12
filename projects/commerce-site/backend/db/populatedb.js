@@ -24,10 +24,14 @@ const initSql = `
     CREATE TABLE users (
         id SERIAL PRIMARY KEY,
         email VARCHAR(255) NOT NULL UNIQUE,
-        password_hash TEXT NOT NULL,
+        password_hash TEXT NOT NULL, /* <-- CRÍTICO */
         full_name VARCHAR(255),
+        phone VARCHAR(30),           /* <-- DEBE EXISTIR */
+        nif VARCHAR(30),             /* <-- DEBE EXISTIR */
         role VARCHAR(50) NOT NULL DEFAULT 'customer',
-        created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW()
+        created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW(),
+        activation_token VARCHAR(36) UNIQUE, 
+        token_expires_at TIMESTAMP
     );
 
     CREATE TABLE products (

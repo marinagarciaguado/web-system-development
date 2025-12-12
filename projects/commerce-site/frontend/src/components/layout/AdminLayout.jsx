@@ -78,6 +78,7 @@ const AdminLayout = () => {
                     <Link to="/admin" style={linkStyle}>Dashboard</Link>
                     <Link to="/admin/products" style={linkStyle}>Gestion Productos</Link>
                     <Link to="/admin/orders" style={linkStyle}>Gestion Pedidos</Link>
+                    <Link to="/admin/users" style={linkStyle}>Gestion Usuarios</Link> 
                 </nav>
                 <div style={controlsStyle}>
                     <span>Hola, {user && user.email ? user.email.split('@')[0] : 'Admin'}</span>

@@ -8,7 +8,7 @@ import SetPasswordPage from './pages/SetPasswordPage';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminProductCRUD from './pages/admin/AdminProductCRUD';
 import AdminOrderManagement from './pages/admin/AdminOrderManagement';
-
+import AdminUserManagement from './pages/admin/AdminUserManagement';
 import MainLayout from './components/layout/MainLayout';
 import AdminLayout from './components/layout/AdminLayout'; // <-- Nuevo Import
 import ProtectedRoute from './components/auth/ProtectedRoute'; // No usado en este ejemplo, pero lo dejamos
@@ -26,13 +26,13 @@ function App() {
                 <Route path="set-password" element={<SetPasswordPage />} />
             </Route>
 
-            {/* 2. Rutas de Administracion (Usan AdminLayout y AdminRoute) */}
+            {/* 2. Rutas de Administración (Usan AdminLayout y AdminRoute) */}
             <Route path="/admin" element={<AdminRoute />}> 
-                {/* AdminLayout es el wrapper que sustituye a Navbar y Footer */}
                 <Route element={<AdminLayout />}> 
                     <Route index element={<AdminDashboard />} />
                     <Route path="products" element={<AdminProductCRUD />} />
                     <Route path="orders" element={<AdminOrderManagement />} />
+                    <Route path="users" element={<AdminUserManagement />} /> {/* <-- NUEVA RUTA */}
                 </Route>
             </Route>
             
