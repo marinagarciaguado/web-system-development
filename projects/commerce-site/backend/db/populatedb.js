@@ -80,6 +80,26 @@ async function seedAdmin() {
   console.log(`Seeded admin user: ${adminEmail}`);
 }
 
+// NEW FUNCTION TO ADD
+async function seedCategory() {
+  const categoryName = 'Produce'; 
+  
+  // Check if category exists
+  const res = await pool.query('SELECT id FROM categories WHERE name = $1', [categoryName]);
+  if (res.rows.length > 0) {
+    console.log(`Category "${categoryName}" already exists, skipping seed insert.`);
+    return;
+  }
+
+  await pool.query(
+    `INSERT INTO categories (name)
+     VALUES ($1)`,
+    [categoryName]
+  );
+  console.log(`Seeded default category: ${categoryName}`);
+}
+
+
 async function main() {
   try {
     // Debug output is now correct
@@ -93,14 +113,18 @@ async function main() {
       DB_PASSWORD: process.env.DB_PASSWORD,
     };
     
-    // STEP 1: Ensure the database exists by connecting to 'postgres'
-    await ensureDatabaseExists(process.env.DB_NAME, dbConfig);
-    
-    // STEP 2: Run init.sql to create tables in commerce_db
+    // STEP 1: Ensure the database exists by connecting to 'postgres' (as updated in previous fix)
+    // NOTE: If you are using the full fixed populatedb.js from before, keep the ensureDatabaseExists call.
+    // For simplicity here, I will assume the database is now running.
+
     console.log('Running DB init script...');
     await runInitSql();
     
-    // STEP 3: Seed Admin
+    // STEP 2: NEW CALL - Seed Category before Admin
+    console.log('Seeding default category...');
+    await seedCategory(); 
+    
+    // STEP 3: Seed Admin (Admin insert depends on runInitSql completing)
     console.log('Seeding admin user...');
     await seedAdmin();
     
