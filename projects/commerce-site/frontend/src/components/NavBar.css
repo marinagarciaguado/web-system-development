@@ -1,6 +1,5 @@
-/* src/components/Navbar.css (FINAL FIXES) */
+/* src/components/Navbar.css */
 
-/* 1. Main Bar Container (Thinner bar, sticky) */
 .navbar-header {
     display: flex;
     justify-content: space-between;
@@ -8,20 +7,18 @@
     padding: 8px 40px; 
     background-color: white; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    height: 70px; /* Increased height slightly for better logo fit */
+    height: 70px;
     z-index: 999;
     position: sticky;
     top: 0;
 }
 
-/* 2. Logo Sizing Fix (Item 2) */
 .brand-logo-img {
-    height: 55px; /* CRITICAL FIX: Ensures logo is visible and proportional */
+    height: 55px;
     width: auto;
     object-fit: contain;
 }
 
-/* 3. Navigation Links (Removing the BOX, Increasing Spacing) */
 .navbar-links {
     background: none !important; 
     display: flex;
@@ -29,20 +26,19 @@
 }
 
 .navbar-links a {
-    margin: 0 25px; /* CRITICAL FIX: Increased horizontal spacing (Item 3) */
+    margin: 0 25px;
     text-decoration: none;
     color: #555;
     font-weight: 500;
     transition: color 0.2s;
     padding: 5px 0; 
-    font-size: 0.95rem; /* Make the font slightly smaller for elegance */
+    font-size: 0.95rem;
 }
 
 .navbar-links a:hover {
     color: var(--primary-color); 
 }
 
-/* 5. Login/Session Button */
 .navbar-auth .btn-primary {
     background-color: #333; 
     color: white;

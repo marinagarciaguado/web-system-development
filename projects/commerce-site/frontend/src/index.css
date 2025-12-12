@@ -1,14 +1,10 @@
-/* --- Global Vite/React Reset Styles --- */
+
 :root {
-  /* ... (color variables) ... */
   --primary-color: #f7a31b; 
   --text-main: #1f2937;
-  --bg-light: #f4f4f9; /* Light grey background color (for scrolling wrapper) */
+  --bg-light: #f4f4f9; 
 }
 
-/* ... (Omitted standard resets) ... */
-
-/* --- Body / Wood Background (FIXED) --- */
 body {
   margin: 0;
   min-height: 100vh;
@@ -22,9 +18,6 @@ h1, h2, h3 {
     font-weight: 700;
 }
 
-/* --- Layout and Structural Styles --- */
-
-/* FIX: Main tag gets a solid background by default (solves wood bleed on other pages) */
 main {
     padding: 0; 
     min-height: 80vh;
@@ -37,15 +30,13 @@ main {
     padding: 20px;
 }
 
-/* 1. Wood Section Styling */
 .initial-wood-section {
-    /* CRITICAL FIX: APPLY BACKGROUND DIRECTLY HERE */
     background-image: url('/woodBackground.jpg');
     background-repeat: no-repeat;
     background-size: cover; 
     background-position: center top;
     
-    color: white; /* Ensure text is white */
+    color: white; 
     min-height: 500px; 
     padding-top: 100px;
     padding-bottom: 100px;
@@ -56,6 +47,7 @@ main {
     color: white; 
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5); 
 }
+
 .initial-wood-section .hero-title {
     font-size: 3.5rem; 
     font-weight: 900; 
@@ -63,6 +55,7 @@ main {
     text-transform: uppercase;
     margin-bottom: 20px;
 }
+
 .initial-wood-section .hero-subtitle {
     font-size: 1.5rem; 
     font-weight: 400; 
@@ -70,45 +63,38 @@ main {
     max-width: 700px; 
     margin: 0 auto; 
     padding: 15px;
-    background-color: rgba(255, 255, 255, 0.15); /* Subtly lift text */
+    background-color: rgba(255, 255, 255, 0.15);
     border-radius: 5px;
 }
 
-
-/* 2. Light Grey Section Wrapper (For all content below the wood section) */
 .scrolling-content-wrapper {
-    background-color: var(--bg-light); /* Light grey background */
+    background-color: var(--bg-light);
     box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2); 
     padding-top: 40px; 
     padding-left: 20px; 
     padding-right: 20px; 
 }
 
-/* General Section Spacing */
 .home-container .home-section {
     padding: 60px 20px; 
-    /* Remove default border-top from sections to make background seamless */
     border-top: none; 
 }
 
-/* Two-Column Layout */
 .two-column-layout {
     display: flex;
-    align-items: flex-start; /* Align content to the top of the section */
+    align-items: center; 
     gap: 80px; 
 }
 
-/* FIX: Remove the dark square background color (Item 9) */
 .history-image {
     flex: 1; 
     min-height: 400px; 
-    background-color: transparent; /* FIX: Removes the grey placeholder square color */
+    background-color: transparent; 
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
     overflow: hidden; 
 }
 
-/* 5. Indent Fix */
 .history-text p {
     line-height: 1.8; 
     padding-right: 20px;
@@ -118,11 +104,9 @@ main {
     flex: 1; 
     max-width: 50%; 
 }
-/* Ensure Images inside the image placeholder fill the space */
+
 .history-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-
-/* ... (Remaining styles omitted for brevity, ensure you copy the full previous block) ... */
