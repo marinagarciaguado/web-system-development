@@ -1,23 +1,19 @@
-// src/components/layout/MainLayout.jsx
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Navbar from '../Navbar'; // Assuming your Navbar.jsx is ready
-import Footer from '../Footer'; // We'll create this next
+import Navbar from '../Navbar';
+import Footer from '../Footer';
+// La clase app-container se usa para asegurar que el footer este abajo del todo
 
 const MainLayout = () => {
   return (
-    <>
-      {/* The Navbar will be visible on all pages using MainLayout */}
-      <Navbar /> 
-      
-      {/* The Outlet renders the current page component (Home, Products, etc.) */}
+    <div className="app-container">
+      <Navbar />
       <main>
+        {/* Outlet renderiza el contenido de la ruta actual (Home, Products, Contact...) */}
         <Outlet />
       </main>
-
-      {/* Footer component */}
       <Footer />
-    </>
+    </div>
   );
 };
 
