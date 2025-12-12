@@ -37,16 +37,22 @@ export const getProductById = async (id) => {
 
 // POST: Create new product (Protected endpoint)
 export const createProduct = async (productData, userId) => {
-    const { name, description, price, category_id, image_url } = productData;
+    // UPDATED: Destructure stock
+    const { name, description, price, category_id, image_url, stock } = productData; 
 
-    // Parameterized query prevents SQL injection
+    // UPDATED: Insert stock value ($5) and shift image_url ($6) and userId ($7)
     const query = `
-        INSERT INTO products (name, description, price, category_id, image_url, user_id)
-        VALUES ($1, $2, $3, $4, $5, $6)
-        RETURNING id, name, price, image_url
+        INSERT INTO products (name, description, price, stock, category_id, image_url, user_id)
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
+        RETURNING id, name, price, stock, image_url
     `;
 
-    const result = await pool.query(query, [name, description, price, category_id, image_url, userId]);
+    // UPDATED: Pass stock into the values array ($4)
+    const result = await pool.query(
+      query, 
+      [name, description, price, stock, category_id, image_url, userId]
+    );
+    
     return result.rows[0];
 };
 
