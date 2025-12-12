@@ -11,14 +11,14 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logout();
-    navigate('/login'); // Redirect to login page after logout
+    navigate('/login');
   };
 
   return (
     <header className="navbar-header">
       <div className="navbar-logo">
         <Link to="/">
-          <img src={logoImage} alt="Capón de Galera Logo" className="brand-logo-img" /> 
+          <img src={logoImage} alt="Capon de Galera Logo" className="brand-logo-img" /> 
         </Link>
       </div>
 
@@ -27,13 +27,11 @@ const Navbar = () => {
         <Link to="/products">PRODUCTOS</Link> 
         <Link to="/contact">CONTACTO</Link>
 
-        {/* Conditional Link: Shows based on Admin status */}
         {isAdmin && (
           <Link to="/admin">ADMIN DASHBOARD</Link>
         )}
       </nav>
 
-      {/* Right-Side Authentication Button */}
       <div className="navbar-auth">
         {isAuthenticated ? (
           <>
@@ -44,13 +42,12 @@ const Navbar = () => {
               onClick={handleLogout} 
               className="btn btn-logout"
             >
-              CERRAR SESIÓN
+              CERRAR SESION
             </button>
           </>
         ) : (
-          /* When NOT authenticated, show the Login/Search Button */
           <Link to="/login" className="btn btn-primary">
-            INICIA SESIÓN
+            INICIA SESION
           </Link>
         )}
       </div>

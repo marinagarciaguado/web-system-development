@@ -1,13 +1,14 @@
-/*App.css*/
+/*
+ * App.css - Estilos especificos de componentes y utilidades.
+ */
+
 :root {
-  --primary-color: #2563eb;
-  --primary-hover: #1d4ed8;
-  --bg-color: #f3f4f6;   
-  --card-bg: #ffffff;   
-  --text-main: #1f2937;   
+  --bg-color: var(--color-background-cream); 
+  --card-bg: var(--color-background-white); 
+  --text-main: var(--color-text-dark); 
   --text-secondary: #6b7280;
-  --danger: #ef4444;
-  --success: #10b981;
+  --danger: #E53935;
+  --success: #4CAF50;
 }
 
 * {
@@ -22,10 +23,10 @@ html, body, #root {
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
   background-color: var(--bg-color);
   color: var(--text-main);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .app-container {
@@ -43,60 +44,19 @@ main {
 
 .container {
   width: 100%;
-  max-width: 1600px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
   flex-grow: 1;
 }
 
-nav {
-  background-color: #111827; 
-  color: white;
-  padding: 1rem 0;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-nav .nav-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-nav .logo {
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  color: #fff;
-}
-
-nav .links {
-  display: flex;
-  gap: 20px;
-}
-
-nav a {
-  color: #e5e7eb;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s;
-}
-
-nav a:hover {
-  color: #60a5fa;
-}
-
 h1, h2 {
   text-align: center;
-  margin-bottom: 2rem;
-  color: var(--text-main);
+  margin-bottom: 2.5rem;
+  color: var(--color-primary-red);
+  font-family: var(--font-serif);
   font-weight: 800;
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 
 .grid {
@@ -110,28 +70,30 @@ h1, h2 {
   background-color: var(--card-bg);
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 10px -1px var(--color-shadow-light); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid #e5e7eb;
+  overflow: hidden; 
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 25px -5px var(--color-shadow-light);
 }
 
 .card h3 {
-  font-size: 1.25rem;
-  color: #111827; 
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  color: var(--color-primary-red); 
   margin-bottom: 0.5rem;
-  font-weight: 700;
+  font-weight: 900;
 }
 
 .card .desc {
-  color: #4b5563; 
+  color: var(--text-secondary); 
   font-size: 0.95rem;
   margin-bottom: 1.5rem;
   flex-grow: 1;
@@ -141,61 +103,82 @@ h1, h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #f3f4f6;
+  border-top: 1px dashed var(--color-background-cream); 
   padding-top: 1rem;
   margin-top: auto;
 }
 
 .price {
-  font-size: 1.5rem;
+  font-size: 1.7rem; 
   font-weight: 800;
-  color: var(--primary-color);
+  color: var(--color-secondary-green);
 }
 
 .category {
-  background-color: #eff6ff;
-  color: var(--primary-color);
-  padding: 4px 12px;
+  background-color: var(--color-background-cream); 
+  color: var(--color-text-dark);
+  padding: 6px 14px; 
   border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
+  border: 1px solid var(--color-secondary-green);
 }
 
-.admin-panel, .login-container {
-  max-width: 600px;
-  margin: 0 auto;
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.add-to-cart-btn {
+  margin-top: 1rem;
+  font-family: var(--font-sans);
 }
 
 form {
-  background: white;
+  background: var(--card-bg);
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px -1px var(--color-shadow-light);
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-input {
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: var(--color-text-dark);
+}
+
+input, textarea, select {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 1rem;
-  transition: border-color 0.2s;
-  background-color: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: var(--color-background-white);
   color: #333;
+  font-family: var(--font-sans);
 }
 
-input:focus {
+input:focus, textarea:focus, select:focus {
   outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  border-color: var(--color-primary-red);
+  box-shadow: 0 0 0 3px rgba(183, 28, 28, 0.2);
 }
 
-button {
-  background-color: var(--primary-color);
+button:not(.btn-primary, .btn-secondary, .btn-edit, .btn-delete) {
+  background-color: var(--color-secondary-green);
   color: white;
   font-weight: 600;
   padding: 0.75rem 1.5rem;
@@ -206,30 +189,156 @@ button {
   font-size: 1rem;
 }
 
-button:hover {
-  background-color: var(--primary-hover);
+.btn-primary { 
+  background-color: var(--color-accent-yellow);
+  color: var(--color-text-dark);
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
 }
 
-.delete-btn {
+.btn-primary:hover {
+  background-color: #FFA000;
+}
+
+.error-message {
+  color: var(--danger);
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+.alert.alert-error {
+  background-color: #FEE2E2; 
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.login-container {
+  max-width: 450px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.forgot-password-link {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.admin-panel, .admin-crud-container {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.product-form-section h3, 
+.product-table-section h3 {
+  border-bottom: 2px solid var(--color-secondary-green);
+  display: inline-block;
+  padding-bottom: 5px;
+  margin-bottom: 25px;
+}
+
+.product-form-section form {
+  box-shadow: 0 4px 10px var(--color-shadow-light);
+  border: 1px solid var(--color-background-cream);
+}
+.product-form-section .form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.product-form-section .full-width {
+  grid-column: span 2;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  grid-column: span 2;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: var(--color-primary-red);
+  border: 1px solid var(--color-primary-red);
+  transition: all 0.2s;
+}
+.btn-secondary:hover {
+  background-color: var(--color-primary-red);
+  color: white;
+}
+
+.product-table-section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px var(--color-shadow-light);
+}
+
+.product-table-section th, .product-table-section td {
+  border: 1px solid #e5e7eb; 
+  padding: 15px;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.product-table-section th {
+  background-color: var(--color-secondary-green);
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.product-table-section tr:nth-child(even) {
+  background-color: var(--color-background-cream);
+}
+
+.product-table-section td button {
+  margin-right: 10px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.btn-edit {
+  background-color: var(--color-accent-yellow); 
+  color: var(--color-text-dark);
+}
+.btn-edit:hover {
+  background-color: #FFA000;
+}
+
+.btn-delete {
   background-color: white;
   color: var(--danger);
   border: 1px solid var(--danger);
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
+}
+.btn-delete:hover {
+  background-color: var(--danger);
+  color: white;
 }
 
-.delete-btn:hover {
-  background-color: #fef2f2;
-}
-
-/* Lista de admin */
 .admin-list {
   list-style: none;
   padding: 0;
   margin-top: 2rem;
 }
 
-.list-item {
+.admin-list li {
   background: white;
   padding: 1rem;
   margin-bottom: 0.75rem;
@@ -238,4 +347,33 @@ button:hover {
   justify-content: space-between;
   align-items: center;
   border: 1px solid #e5e7eb;
+}
+
+.ingredient-map-container {
+  margin-top: 30px;
+  padding: 20px;
+  border: 2px dashed var(--color-secondary-green);
+  border-radius: 10px;
+  text-align: center;
+  background-color: var(--color-background-cream);
+}
+.ingredient-map-container h3 {
+  color: var(--color-secondary-green);
+  margin-bottom: 5px;
+  font-size: 1.3rem;
+  font-family: var(--font-sans);
+}
+.ingredient-map-container .subtitle {
+  color: var(--color-text-dark);
+  margin-bottom: 20px;
+  font-style: italic;
+  font-size: 0.95rem;
+}
+.visual-ingredient-map {
+  max-width: 80%;
+  height: auto;
+  display: block;
+  margin: 20px auto 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px var(--color-shadow-light);
 }

@@ -1,105 +1,70 @@
-/*
- * index.css - Estilos Globales para Capón de Galera
- * Estética: Frescura, Tradición Andaluza, Calidad.
- */
-
-/* =========================================================================
- * 1. VARIABLES CSS (Paleta de Colores y Tipografía)
- * =========================================================================
- */
 :root {
-  /* Colores de la Marca (Tomate, Aceite de Oliva, Sol) */
-  --color-primary-red: #B71C1C;    /* Rojo Tomate Fresco (Principal) */
-  --color-secondary-green: #6B8E23; /* Verde Oliva (Acento/Naturalidad) */
-  --color-accent-yellow: #FFC107;  /* Amarillo Sol (Botones/CTAs) */
-  
-  /* Colores de Fondo y Texto */
-  --color-background-cream: #FAF0E6; /* Fondo Crema Suave / Rústico */
-  --color-background-white: #ffffff; /* Fondo blanco para secciones de contenido */
-  --color-text-dark: #263238;      /* Texto principal, gris oscuro */
-  --color-text-light: #ffffff;     /* Texto en fondos oscuros */
+  --color-primary-red: #B71C1C;
+  --color-secondary-green: #6B8E23;
+  --color-accent-yellow: #FFC107;
+  --color-background-cream: #FAF0E6;
+  --color-background-white: #ffffff;
+  --color-text-dark: #263238;
+  --color-text-light: #ffffff;
   --color-shadow-light: rgba(0, 0, 0, 0.1);
   --color-shadow-strong: rgba(0, 0, 0, 0.3);
-
-  /* Tipografía (Asegúrate de importar Playfair Display y Montserrat) */
   --font-serif: 'Playfair Display', Georgia, serif; 
-  --font-sans: 'Montserrat', Arial, sans-serif;   
+  --font-sans: 'Montserrat', Arial, sans-serif; 
 }
 
-/* =========================================================================
- * 2. ESTILOS GLOBALES
- * =========================================================================
- */
-
-/* Reinicio de Margen y Fondo General */
 body {
   margin: 0;
   min-height: 100vh;
-  /* Fondo general crema para calidez */
   background-color: var(--color-background-cream); 
   font-family: var(--font-sans); 
   color: var(--color-text-dark);
   line-height: 1.6;
 }
 
-/* Estilos de Títulos */
 h1, h2, h3 {
-  /* Usamos la serif para dar un toque de calidad/gourmet */
   font-family: var(--font-serif); 
   font-weight: 700;
-  color: var(--color-primary-red); /* Color distintivo */
+  color: var(--color-primary-red);
   margin-top: 0;
 }
 
-/* Contenedor Principal (Main Content) */
 main {
   padding: 0; 
   min-height: 80vh;
-  /* El contenido dentro de main resaltará sobre el fondo crema de body */
   background-color: var(--color-background-white); 
 }
 
-/* Contenedores de Layout */
 .home-container, .admin-crud-container, .container {
   max-width: 1200px; 
   margin: 0 auto; 
   padding: 20px;
 }
 
-/* =========================================================================
- * 3. SECCIÓN HERO (initial-wood-section -> FRESHNESS HERO)
- * =========================================================================
- */
 .initial-wood-section {
-  /* La imagen de fondo debe estar en public/ o ajusta la ruta */
   background-image: url('/fresh_ingredients_background.jpg'); 
   background-repeat: no-repeat;
   background-size: cover; 
   background-position: center 30%; 
-  
   color: var(--color-text-light); 
   min-height: 550px; 
   padding-top: 100px;
   padding-bottom: 100px;
   text-align: center;
   position: relative;
-  overflow: hidden; /* Asegura que el after/before no se salga */
+  overflow: hidden;
 }
 
-/* Overlay para Legibilidad del Texto */
 .initial-wood-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    /* Oscurecimiento sutil y ligero toque de color de marca */
-    background: rgba(0, 0, 0, 0.2); 
-    z-index: 1; 
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2); 
+  z-index: 1; 
 }
 
-/* Asegurar que el contenido del Hero esté encima del overlay */
 .initial-wood-section > *,
 .initial-wood-section h2, .initial-wood-section p {
   position: relative; 
@@ -126,21 +91,13 @@ main {
   max-width: 800px; 
   margin: 0 auto; 
   padding: 15px 30px;
-  /* Destacar el subtítulo con el color principal de la marca */
-  background-color: rgba(183, 28, 28, 0.7); /* Rojo Tomate con opacidad */
+  background-color: rgba(183, 28, 28, 0.7);
   border-radius: 8px; 
   border: 2px solid var(--color-text-light); 
 }
 
-
-/* =========================================================================
- * 4. SECCIONES DE CONTENIDO Y LAYOUTS
- * =========================================================================
- */
-
 .scrolling-content-wrapper {
   background-color: var(--color-background-white);
-  /* Sombra sutil para separar del Hero */
   box-shadow: 0 -2px 5px var(--color-shadow-light); 
   padding-top: 40px; 
   padding-left: 20px; 
@@ -152,7 +109,6 @@ main {
   border-top: none; 
 }
 
-/* Layout de Dos Columnas (Historia / Ingredientes) */
 .two-column-layout {
   display: flex;
   gap: 60px; 
@@ -166,11 +122,10 @@ main {
 }
 
 .history-text h2 {
-    margin-top: 0;
-    /* Línea decorativa para títulos de sección */
-    border-bottom: 2px solid var(--color-secondary-green); 
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+  margin-top: 0;
+  border-bottom: 2px solid var(--color-secondary-green); 
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .history-text p {
@@ -182,7 +137,6 @@ main {
   min-height: 400px; 
   background-color: var(--color-background-cream); 
   border-radius: 10px;
-  /* Sombra de tarjeta más elegante y suave */
   box-shadow: 0 8px 20px var(--color-shadow-light); 
   overflow: hidden; 
 }
@@ -195,10 +149,9 @@ main {
 }
 
 .history-image img:hover {
-    transform: scale(1.03); /* Efecto de zoom sutil al pasar el ratón */
+  transform: scale(1.03);
 }
 
-/* Estilo para botones primarios (usar la clase en el HTML) */
 .btn-primary {
   display: inline-block;
   background-color: var(--color-accent-yellow);
@@ -213,42 +166,35 @@ main {
 }
 
 .btn-primary:hover {
-  background-color: #FFA000; /* Tono más oscuro de amarillo para hover */
+  background-color: #FFA000;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px var(--color-shadow-light);
 }
 
-
-/* =========================================================================
- * 5. MEDIA QUERIES (Responsiveness)
- * =========================================================================
- */
-
 @media (max-width: 1024px) {
-    .initial-wood-section .hero-title {
-        font-size: 3rem; 
-    }
+  .initial-wood-section .hero-title {
+    font-size: 3rem; 
+  }
 }
 
 @media (max-width: 768px) {
-  /* Layout de dos columnas a una sola columna */
   .two-column-layout {
     flex-direction: column;
     gap: 30px;
   }
   .history-text {
     max-width: 100%;
-    order: 2; /* Pone el texto debajo de la imagen en móvil */
+    order: 2;
   }
   .history-image {
-    order: 1; /* Pone la imagen arriba del texto en móvil */
+    order: 1;
     min-height: 300px;
   }
   .initial-wood-section .hero-title {
-      font-size: 2.5rem; 
+    font-size: 2.5rem; 
   }
   .initial-wood-section .hero-subtitle {
-      font-size: 1.2rem;
-      padding: 10px 15px;
+    font-size: 1.2rem;
+    padding: 10px 15px;
   }
 }
