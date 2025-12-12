@@ -31,40 +31,40 @@ html, body, #root {
   min-height: 100vh;
 }
 
-/* --- Body / Wood Background (FIXED - NO BACKGROUND IMAGE HERE) --- */
+/* --- Body / Wood Background --- */
 body {
   margin: 0;
   min-height: 100vh;
-  /* CRITICAL FIX: Base background is solid light grey for consistency on all pages */
-  background-color: var(--bg-light); 
+  background-image: url('/woodBackground.jpg'); 
+  background-repeat: no-repeat;
+  background-size: cover; 
+  background-position: center top; 
+  background-attachment: fixed; 
+  background-color: #f8f8f8; 
   
-  /* 4. Font Fix */
+  /* 4. Font Fix: Set the Georgia font */
   font-family: 'Georgia', serif; 
   color: #333;
 }
 
-/* 4. Font Fix for Headings */
 h1, h2, h3 {
     font-family: 'Georgia', serif; 
     font-weight: 700;
 }
 
 /* --- Navbar Logo Fix (Item 2) --- */
-/* The actual logo height fix is in Navbar.css, but this ensures no conflicts */
 .brand-logo-img {
     width: auto;
 }
 
 /* --- Layout and Structural Styles --- */
 
-/* FIX: Main tag gets a solid white background by default for all pages */
 main {
     padding: 0; 
     min-height: 80vh;
     background-color: white; 
 }
 
-/* CRITICAL FIX (Items 1, 5, 7): Rule to apply the wood background ONLY to the home page's main content */
 .home-container {
     max-width: 1200px; 
     margin: 0 auto; 
@@ -88,6 +88,31 @@ main {
 .initial-wood-section h2, .initial-wood-section p {
     color: white; 
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5); 
+}
+
+/* src/index.css (Add these new rules) */
+
+/* Styling for the main heading in the hero section */
+.initial-wood-section .hero-title {
+    font-size: 3.5rem; /* Make it large and dominating */
+    font-weight: 900; /* Extra bold */
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+/* Styling for the supporting paragraph (the "younger" text) */
+.initial-wood-section .hero-subtitle {
+    font-size: 1.2rem; /* Substantially larger than standard text */
+    font-weight: 400; /* Keep it lighter than the title */
+    line-height: 1.4;
+    max-width: 700px; /* Constrain the width for better readability in a block */
+    margin: 0 auto; /* Center the text block */
+    padding: 0 10px;
+    
+    /* Add subtle background for contrast over the wood */
+    background-color: rgba(218, 215, 198, 0.404); 
+    border-radius: 5px;
+    padding: 15px;
 }
 
 /* 2. Light Grey Section Wrapper */
@@ -257,3 +282,4 @@ th {
 tr:hover {
     background-color: #f9f9f9;
 }
+
