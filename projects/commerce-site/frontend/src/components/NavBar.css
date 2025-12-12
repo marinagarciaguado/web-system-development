@@ -1,0 +1,51 @@
+/* src/components/Navbar.css */
+.navbar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #fff; /* White background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow like in the design */
+}
+
+.navbar-logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+.navbar-links a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.navbar-links a:hover {
+    color: #f7a31b; /* Use a color from your design */
+}
+
+.navbar-auth .btn-primary {
+    background-color: #333; /* Dark button like the design */
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.user-greeting {
+    margin-right: 15px;
+    color: #777;
+}
+
+.btn-logout {
+    background: none;
+    border: 1px solid #ccc;
+    color: #333;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+}

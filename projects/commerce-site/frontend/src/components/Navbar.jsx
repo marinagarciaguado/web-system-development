@@ -1,19 +1,60 @@
-import { Link } from 'react-router-dom';
-import '../App.css';
+// src/components/Navbar.jsx
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+// Import a basic CSS file for styling
+import './Navbar.css'; 
 
-function Navbar() {
+const Navbar = () => {
+  const { isAuthenticated, isAdmin, logout, user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login'); // Redirect to login page after logout
+  };
+
   return (
-    <nav>
-      <div className="nav-content"> 
-        <div className="logo">My Shop</div>
-        <div className="links">
-          <Link to="/">Catalog</Link>
-          <Link to="/admin">Administration</Link>
-          <Link to="/login" className="login-btn">Login</Link>
-        </div>
+    <header className="navbar-header">
+      <div className="navbar-logo">
+        <Link to="/">CAPÓN DE GALERA</Link>
       </div>
-    </nav>
+      
+      <nav className="navbar-links">
+        <Link to="/">INICIO</Link>
+        <Link to="/products">PRODUCTO</Link> 
+        <Link to="/contact">CONTACTO</Link>
+
+        {/* Conditional Link: Shows based on Admin status */}
+        {isAdmin && (
+          <Link to="/admin">ADMIN DASHBOARD</Link>
+        )}
+      </nav>
+
+      {/* Right-Side Authentication Button */}
+      <div className="navbar-auth">
+        {isAuthenticated ? (
+          <>
+            {/* Displaying the user's name/email is optional, but helpful */}
+            <span className="user-greeting">
+              Hola, {user.email.split('@')[0]}
+            </span>
+            <button 
+              onClick={handleLogout} 
+              className="btn btn-logout"
+            >
+              CERRAR SESIÓN
+            </button>
+          </>
+        ) : (
+          /* When NOT authenticated, show the Login/Search Button */
+          <Link to="/login" className="btn btn-primary">
+            ENCUENTRA TU TIENDA / LOGIN
+          </Link>
+        )}
+      </div>
+    </header>
   );
-}
+};
 
 export default Navbar;

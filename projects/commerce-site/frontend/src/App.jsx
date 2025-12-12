@@ -1,9 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
 // Import or create placeholder components for all pages
-import HomePage from './pages/HomePage';
+import Home from './pages/Home';
 import ProductCatalogPage from './pages/ProductCatalogPage';
 import ContactPage from './pages/ContactPage';
-import LoginPage from './pages/LoginPage';
+import Login from './pages/Login';
 import SetPasswordPage from './pages/SetPasswordPage';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminProductCRUD from './pages/admin/AdminProductCRUD';
@@ -22,11 +22,11 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="products" element={<ProductCatalogPage />} />
         <Route path="contact" element={<ContactPage />} />
-        <Route path="login" element={<LoginPage />} />
+        <Route path="login" element={<Login />} />
         <Route path="set-password" element={<SetPasswordPage />} />
       </Route>
 
-      {/* 2. Protected Admin Routes (No MainLayout needed for dashboard) */}
+      {/* 2. Protected Admin Routes - Uses AdminRoute */}
       <Route path="/admin" element={<AdminRoute />}>
         <Route index element={<AdminDashboard />} />
         <Route path="products" element={<AdminProductCRUD />} />
