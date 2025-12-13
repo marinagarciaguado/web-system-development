@@ -52,13 +52,14 @@ cd web-system-development
 ### 2. Arrancar la Base de Datos (Docker)
 Abre una terminal y ejecuta:
 
-docker run --name capon-db -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=capon_db -p 5432:5432 -d postgres
+docker run --name my_commerce_db -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_DB=postgres -p 5432:5432 -d postgres
 
 ### 3. Configuración del Backend
 cd backend
 npm install
 
 Crea un archivo .env en la carpeta backend con este contenido exacto:
+
 PORT=3001
 DB_HOST=localhost
 DB_USER=postgres
@@ -106,10 +107,12 @@ price, stock.
 Endpoints principales disponibles en http://localhost:3001/api:
 
 Autenticación:
+
 POST/auth/registerRegistro de nuevo administrador
 POST/auth/loginAcceso y obtención de Token JWT
 
 Gestión de Productos (Requiere Token):
+
 GET/productsListar todos los gazpachos y cremas
 POST/productsAñadir nuevo producto al catálogo
 PUT/products/:idActualizar stock o detalles del producto
