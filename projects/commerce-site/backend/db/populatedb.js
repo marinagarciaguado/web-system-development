@@ -3,9 +3,6 @@ import 'dotenv/config';
 import pool from './pool.js'; 
 import bcrypt from 'bcrypt';
 
-// --- Default Data ---
-// No necesitamos data de categorias
-
 // --- SQL Queries ---
 
 // Query para crear las tablas
@@ -110,8 +107,6 @@ async function main() {
 
         // 2. Insertar Usuario Administrador
         await seedAdminUser();
-        
-        // 3. REMOVIDO: Ya no se llama a seedCategories()
         
         console.log('Done.');
         console.log('\n--- PRUEBA EXITOSA ---');

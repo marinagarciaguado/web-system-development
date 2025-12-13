@@ -1,6 +1,6 @@
 // backend/controllers/userController.js
 import bcrypt from 'bcrypt';
-import { v4 as uuidv4 } from 'uuid'; // REMINDER: You must run 'npm install uuid'
+import { v4 as uuidv4 } from 'uuid'; 
 import * as userModel from '../models/userModel.js';
 import { CreateUserSchema } from '../schemas/authSchema.js';
 
@@ -46,7 +46,6 @@ export const adminCreateClient = asyncHandler(async (req, res) => {
   });
   
   // 5. SIMULATE SENDING THE EMAIL
-  // You must set FRONTEND_URL in your .env (e.g., http://localhost:5173)
   const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173'; 
   const setupLink = `${FRONTEND_URL}/set-password?token=${activationToken}`;
   

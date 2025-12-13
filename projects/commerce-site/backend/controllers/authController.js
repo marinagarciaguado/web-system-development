@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt';
-// UPDATE: Remove RegisterSchema, add SetPasswordSchema
 import { LoginSchema, SetPasswordSchema } from '../schemas/authSchema.js'; 
 import * as userModel from '../models/userModel.js';
 
@@ -8,9 +7,7 @@ const asyncHandler = fn => (req, res, next) => {
     Promise.resolve(fn(req, res, next)).catch(next);
 };
 
-// POST /api/auth/register (REMOVED: B2B flow)
-
-// NEW: POST /api/auth/set-password
+// POST /api/auth/set-password
 export const setInitialPassword = asyncHandler(async (req, res) => {
     // 1. Validate the token and new password (using SetPasswordSchema)
     const result = SetPasswordSchema.safeParse(req.body);

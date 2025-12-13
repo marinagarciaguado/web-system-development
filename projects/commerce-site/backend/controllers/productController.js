@@ -1,6 +1,5 @@
 // backend/controllers/productController.js
 import * as productModel from '../models/productModel.js';
-// [MODIFICADO] El ProductSchema se mantiene, aunque ya no tiene category_id
 import { ProductSchema, IdSchema } from '../schemas/productSchema.js'; 
 
 // async wrapper for error handling
@@ -46,10 +45,6 @@ export const createProduct = asyncHandler(async (req, res) => {
   }
 
   const productData = productResult.data;
-  
-  // CRITICAL FIX: Proporcionar un ID de usuario por defecto (1) si req.user no existe.
-  // Esto previene el fallo "Cannot read properties of undefined (reading 'id')".
-  // Asume que el usuario con ID 1 existe en tu tabla 'users'.
   const userId = req.user?.id || 1; 
 
   console.log('--- CREATING PRODUCT ---');

@@ -155,7 +155,7 @@ main {
 .btn-primary {
   display: inline-block;
   background-color: var(--color-accent-yellow);
-  color: var(--color-text-dark); /* CAMBIO: Texto oscuro en boton amarillo */
+  color: var(--color-text-dark); 
   font-weight: bold;
   text-decoration: none;
   padding: 12px 25px;

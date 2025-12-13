@@ -10,8 +10,8 @@ import AdminProductCRUD from './pages/admin/AdminProductCRUD';
 import AdminOrderManagement from './pages/admin/AdminOrderManagement';
 import AdminUserManagement from './pages/admin/AdminUserManagement';
 import MainLayout from './components/layout/MainLayout';
-import AdminLayout from './components/layout/AdminLayout'; // <-- Nuevo Import
-import ProtectedRoute from './components/auth/ProtectedRoute'; // No usado en este ejemplo, pero lo dejamos
+import AdminLayout from './components/layout/AdminLayout'; 
+import ProtectedRoute from './components/auth/ProtectedRoute'; 
 import AdminRoute from './components/auth/AdminRoute';
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
                     <Route index element={<AdminDashboard />} />
                     <Route path="products" element={<AdminProductCRUD />} />
                     <Route path="orders" element={<AdminOrderManagement />} />
-                    <Route path="users" element={<AdminUserManagement />} /> {/* <-- NUEVA RUTA */}
+                    <Route path="users" element={<AdminUserManagement />} /> 
                 </Route>
             </Route>
             

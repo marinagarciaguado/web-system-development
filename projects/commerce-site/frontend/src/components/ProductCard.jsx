@@ -1,8 +1,7 @@
 import React from 'react'; 
-import { useAuth } from '../context/AuthContext'; // Importamos el hook de autenticacion
+import { useAuth } from '../context/AuthContext'; 
 
 function ProductCard({ product }) {
-    // [PASO 2: VERIFICAR AUTENTICACION]
     const { isAuthenticated } = useAuth(); 
 
     return (

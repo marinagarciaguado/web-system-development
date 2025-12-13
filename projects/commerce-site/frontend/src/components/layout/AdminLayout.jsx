@@ -2,7 +2,6 @@
 import React from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-// No dependemos de CSS externo para el layout basico
 
 const AdminLayout = () => {
     const { logout, user } = useAuth();
@@ -18,9 +17,8 @@ const AdminLayout = () => {
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: '15px 40px',
-        // Usamos el color oscuro de tu paleta
-        backgroundColor: '#263238', // var(--color-text-dark)
-        color: '#FAF0E6', // var(--color-background-cream)
+        backgroundColor: '#263238', 
+        color: '#FAF0E6', 
         boxShadow: '0 2px 5px rgba(0, 0, 0, 0.2)',
         position: 'sticky',
         top: 0,
@@ -56,9 +54,9 @@ const AdminLayout = () => {
         gap: '15px',
     };
 
-    // Estilos del Boton Logout (minimalista y funcional)
+    // Estilos del Boton Logout
     const logoutBtnStyle = {
-        backgroundColor: '#B71C1C', // Rojo Tomate
+        backgroundColor: '#B71C1C', 
         color: 'white',
         border: 'none',
         padding: '8px 15px',
@@ -71,7 +69,7 @@ const AdminLayout = () => {
 
 
     return (
-        <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#FAF0E6' /* var(--color-background-cream) */ }}>
+        <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#FAF0E6' }}>
             <header style={headerStyle}>
                 <h1 style={h1Style}>Panel de Administracion</h1>
                 <nav style={navStyle}>

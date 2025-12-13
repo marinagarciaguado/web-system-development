@@ -100,5 +100,3 @@ export const updateOrderStatus = asyncHandler(async (req, res) => {
         order: updatedOrder
     });
 });
-
-// DELETE is usually not implemented for orders, as 'cancelled' status is preferred.
