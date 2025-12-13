@@ -52,7 +52,7 @@ cd web-system-development
 ### 2. Arrancar la Base de Datos (Docker)
 Abre una terminal y ejecuta:
 
-docker run --name my_commerce_db -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_DB=postgres -p 5432:5432 -d postgres
+docker run --name my_commerce_db -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_DB=my_commerce_db -p 5432:5432 -d postgres
 
 ### 3. Configuración del Backend
 cd backend
