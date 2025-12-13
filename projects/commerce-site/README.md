@@ -45,7 +45,8 @@ El proyecto cumple con los requisitos técnicos del curso utilizando:
 
 ### 1. Clonar el repositorio
 
-git clone [(https://github.com/marinagarciaguado/web-system-development)]
+git clone (https://github.com/marinagarciaguado/web-system-development)
+
 cd web-system-development
 
 ### 2. Arrancar la Base de Datos (Docker)
