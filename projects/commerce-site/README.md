@@ -44,12 +44,11 @@ El proyecto cumple con los requisitos técnicos del curso utilizando:
 * Git
 
 ### 1. Clonar el repositorio
-```bash
+
 git clone [URL_DE_TU_REPOSITORIO]
 cd web-system-development
 
 ### 2. Arrancar la Base de Datos (Docker)
 Abre una terminal y ejecuta:
 
-```bash
 docker run --name capon-db -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=capon_db -p 5432:5432 -d postgres
