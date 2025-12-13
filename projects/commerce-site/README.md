@@ -61,11 +61,17 @@ npm install
 Crea un archivo .env en la carpeta backend con este contenido exacto:
 
 PORT=3001
+
 DB_HOST=localhost
+
 DB_USER=postgres
+
 DB_PASSWORD=mysecretpassword
+
 DB_NAME=my_commerce_db
+
 JWT_SECRET=your_long_and_random_jwt_secret_key
+
 FRONTEND_URL=http://localhost:5173
 
 Iniciar servidor e inicializar tablas:
@@ -109,11 +115,15 @@ Endpoints principales disponibles en http://localhost:3001/api:
 Autenticación:
 
 POST/auth/registerRegistro de nuevo administrador
+
 POST/auth/loginAcceso y obtención de Token JWT
 
 Gestión de Productos (Requiere Token):
 
 GET/productsListar todos los gazpachos y cremas
+
 POST/productsAñadir nuevo producto al catálogo
+
 PUT/products/:idActualizar stock o detalles del producto
+
 DELETE/products/:idEliminar un producto del sistema
